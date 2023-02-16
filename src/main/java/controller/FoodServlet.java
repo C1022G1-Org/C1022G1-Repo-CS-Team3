@@ -47,7 +47,7 @@ public class FoodServlet extends HttpServlet {
         List<Food> foodList = foodService.ListBeverage();
         request.setAttribute("foodList", foodList);
         try {
-            request.getRequestDispatcher("/view/list.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class FoodServlet extends HttpServlet {
         List<Food> foodList = foodService.listFastFood();
         request.setAttribute("foodList", foodList);
         try {
-            request.getRequestDispatcher("/view/list.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
@@ -67,7 +67,7 @@ public class FoodServlet extends HttpServlet {
         List<Food> foodList = foodService.listFood();
         request.setAttribute("foodList", foodList);
         try {
-            request.getRequestDispatcher("/view/list.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
@@ -79,7 +79,7 @@ public class FoodServlet extends HttpServlet {
         request.setAttribute("foodList", foodList);
         request.setAttribute("search", search);
         try {
-            request.getRequestDispatcher("/view/list.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
