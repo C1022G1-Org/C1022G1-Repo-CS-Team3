@@ -20,12 +20,12 @@ public class Food {
         this.category_name = category_name;
     }
 
-    public Food(String name, String description, int price, String imgURL, String category_id) {
+    public Food(String name, String description, int price, String imgURL, String category_name) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.imgURL = imgURL;
-        this.category_name = category_id;
+        this.category_name = category_name;
     }
 
     public int getId() {
