@@ -57,7 +57,7 @@
             <span class="app-menu__label">Quản lý nhân viên</span></a></li>
         <li><a class="app-menu__item " href="#"><i class='app-menu__icon bx bx-user-voice'></i><span
                 class="app-menu__label">Quản lý khách hàng</span></a></li>
-        <li><a class="app-menu__item active" href="table-data-product.html"><i
+        <li><a class="app-menu__item active" href="quan-ly-mon-an.html"><i
                 class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý món ăn</span></a>
         </li>
     </ul>
@@ -90,41 +90,40 @@
                         <tr>
                             <th>Mã món ăn</th>
                             <th>Tên món ăn</th>
+                            <th>Danh mục</th>
+                            <th>Giá tiền</th>
                             <th>Ảnh</th>
                             <th>Mô tả</th>
-                            <th>Giá tiền</th>
-                            <th>Danh mục</th>
                             <th>Chức năng</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-
                             <td>1</td>
                             <td>Bún bò Huế</td>
+                            <td>Bún</td>
+                            <td>35.000</td>
                             <td><img src="img/bún bò huế.jfif" alt="" width="100px;"></td>
                             <td>bún bò</td>
-                            <td>35.000</td>
-                            <td>Bún</td>
                             <td><button class="btn btn-primary btn-sm trash" type="button" id="delete" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                             </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#update"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fas fa-edit"></i></button>
                             </td>
                         </tr>
                         <tr>
 
                             <td>2</td>
                             <td>Cơm tấm</td>
+                            <td>Cơm</td>
+                            <td>35.000</td>
                             <td><img src="img/cơm tấm.jfif" alt="" width="100px;"></td>
                             <td>cơm tấm</td>
-                            <td>35.000</td>
-                            <td>Cơm</td>
                             <td>
-                                <button class="btn btn-primary btn-sm trash" type="button" id="delete" title="Xóa"
+                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
                                         onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
                                 </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal" data-target="#update"><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fas fa-edit"></i></button>
                             </td>
                         </tr>
                         </tbody>
@@ -140,7 +139,6 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header col-md-9">
-                <button type="button" class="close" data-dismiss="modal">X</button>
                 <h3 style="text-align:center; color: #ea0000;">THÊM MỚI MÓN ĂN</h3>
             </div>
             <div class="modal-body">
@@ -171,32 +169,34 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label">Ảnh sản phẩm</label>
-                        <div class="col-md-12" id="myfileupload">
-                            <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
-                        </div>
-                        <div id="thumbbox">
-                            <img height="200" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
-                            <a class="removeimg" href="javascript:"></a>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label for="txtGia" class="control-label col-xs-3">Giá bán</label>
                         <div class="col-md-12">
                             <input type="text" class="form-control" id="txtGia">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Ảnh sản phẩm</label>
+                        <div class="col-md-12" id="myfileupload">
+                            <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
+                        </div>
+                        <div id="thumbbox">
+                            <img height="200" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
+                            <a class="removeimg" href="javascript:"></a>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label for="txtMota" class="control-label col-xs-3">Mô tả</label>
                         <div class="col-md-12">
-                            <textarea rows="2" cols="57" id="txtMota"></textarea>
+                            <input type="text" class="form-control" id="txtMota">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer col-md-5 text-center">
                 <button type="button" id="btnSave" class="btn btn-success btn-block">Lưu</button>
-                <button class="btn btn-cancel" data-dismiss="modal">Hủy bỏ</a>
+                <button class="btn btn-cancel" type="button" data-dismiss="modal">Hủy bỏ</a>
             </div>
         </div>
     </div>
@@ -209,7 +209,6 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header col-md-9">
-                <button type="button" class="close" data-dismiss="modal">X</button>
                 <h3 style="text-align:center; color: #ea0000;">SỬA THÔNG TIN MÓN ĂN</h3>
             </div>
             <div class="modal-body">
@@ -218,53 +217,56 @@
                         <div id="thongbao" class="text-danger" style="text-align: center;"></div>
                     </div>
                     <div class="form-group">
-                        <label for="id" class="control-label col-xs-3">Mã món ăn</label>
+                        <label for="idup" class="control-label col-xs-3">Mã món ăn</label>
                         <div class="col-md-12">
-                            <input type="number" class="form-control" id="txtMa">
+                            <input type="number" class="form-control" id="idup">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtName" class="control-label col-xs-3">Tên món ăn</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" id="txtName">
+                            <input type="text" class="form-control" id="nameup">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtDm" class="control-label">Danh mục</label>
                         <div class="col-md-12">
-                            <select class="form-control" id="txtDm">
+                            <select class="form-control" id="dmup">
                                 <option>-- Chọn danh mục --</option>
                                 <option>Bún</option>
                                 <option>Cơm</option>
                             </select>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="txtGia" class="control-label col-xs-3">Giá bán</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" id="gia">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="control-label">Ảnh sản phẩm</label>
                         <div class="col-md-12" id="uploadfile">
                             <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
                         </div>
                         <div id="thumbbox">
-                            <img height="200" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
+                            <img height="200" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
                             <a class="removeimg" href="javascript:"></a>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="txtGia" class="control-label col-xs-3">Giá bán</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" id="txtGia">
-                        </div>
-                    </div>
+
                     <div class="form-group">
                         <label for="txtMota" class="control-label col-xs-3">Mô tả</label>
                         <div class="col-md-12">
-                            <textarea rows="2" cols="57" id="txtMota"></textarea>
+                            <input type="text" class="form-control" id="txtMota">
                         </div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer col-md-5 text-center">
-                <button type="button" id="btnSave" class="btn btn-success btn-block">Lưu</button>
+                <button type="button" id="save" class="btn btn-success btn-block">Lưu</button>
                 <button class="btn btn-cancel" data-dismiss="modal">Hủy bỏ</a>
             </div>
         </div>
@@ -299,12 +301,10 @@
             $('.Choicefile').css('cursor', 'default');
             $(".removeimg").show();
             $(".Choicefile").unbind('click');
-
         }
         $(document).ready(function () {
             $(".Choicefile").bind('click', function () {
                 $("#uploadfile").click();
-
             });
             $(".removeimg").click(function () {
                 $("#thumbimage").attr('src', '').hide();
