@@ -32,5 +32,10 @@ public class FoodService implements IFoodService {
         return foodRepository.ListBeverage();
     }
 
+    @Override
+    public void addNewFood(Food food) {
+        foodRepository.addNewFood(food);
+    }
+
 
 }

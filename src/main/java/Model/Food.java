@@ -20,6 +20,14 @@ public class Food {
         this.category_name = category_name;
     }
 
+    public String getCategory_name() {
+        return category_name;
+    }
+
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
+    }
+
     public Food(String name, String description, int price, String imgURL, String category_name) {
         this.name = name;
         this.description = description;
@@ -66,13 +74,5 @@ public class Food {
 
     public void setImgURL(String imgURL) {
         this.imgURL = imgURL;
-    }
-
-    public String getCategory_id() {
-        return category_name;
-    }
-
-    public void setCategory_id(String category_id) {
-        this.category_name = category_id;
     }
 }

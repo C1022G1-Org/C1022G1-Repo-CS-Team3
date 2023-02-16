@@ -9,4 +9,5 @@ public interface IFoodService {
     List<Food> listFood();
     List<Food> listFastFood();
     List<Food> ListBeverage();
+    void addNewFood (Food food);
 }
