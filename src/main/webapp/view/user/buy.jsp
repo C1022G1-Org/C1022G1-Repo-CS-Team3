@@ -22,32 +22,32 @@
 <table >
     <thead>
     <tr>
-        <th><img src="${food.imgURL}" alt=""></th>
+        <th><img src="${food.imgURL}" width="300px" alt=""></th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <th>Tên thức ăn</th>
+        <th>Tên thức ăn: </th>
         <td>${food.name}</td>
     </tr>
     <tr>
-        <th>Giá</th>
+        <th>Giá: </th>
         <td>${food.price}đ</td>
     </tr>
     <tr>
-        <th>Mô tả</th>
+        <th>Mô tả: </th>
         <td>${food.description}</td>
     </tr>
     <tr>
-        <th>Loại thức ăn</th>
-        <td>${food.category_name}</td>
+        <th>Danh mục: </th>
+        <td>${food.categoryName}</td>
     </tr>
     <tr>
-        <th>Số lượng</th>
+        <th>Số lượng: </th>
         <td><input type="number" name="" id=""></td>
     </tr>
     <tr>
-        <input type="submit" value="Mua">
+        <td><input type="submit" value="Mua" class="btn btn-secondary"></td>
     </tr>
     </tbody>
 </table>
