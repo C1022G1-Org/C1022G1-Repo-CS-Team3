@@ -160,40 +160,6 @@
     </div>
 </nav>
 
-<%--<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">--%>
-<%--    <div class="carousel-indicators">--%>
-<%--        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"--%>
-<%--                aria-current="true" aria-label="Slide 1"></button>--%>
-<%--        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"--%>
-<%--                aria-label="Slide 2"></button>--%>
-<%--        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"--%>
-<%--                aria-label="Slide 3"></button>--%>
-<%--    </div>--%>
-<%--    <div class="carousel-inner">--%>
-<%--        <div class="carousel-item active">--%>
-<%--            <img src="../img/bún%20bò%20huế.jfif" class="d-block w-100" alt="...">--%>
-<%--        </div>--%>
-<%--        <div class="carousel-item">--%>
-<%--            <img src="../img/cơm%20tấm.jfif"--%>
-<%--                 class="d-block w-100"--%>
-<%--                 alt="...">--%>
-<%--        </div>--%>
-<%--        <div class="carousel-item">--%>
-<%--            <img src="../img/phở.jfif" class="d-block w-100" alt="...">--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"--%>
-<%--            data-bs-slide="prev">--%>
-<%--        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
-<%--        <span class="visually-hidden">Previous</span>--%>
-<%--    </button>--%>
-<%--    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"--%>
-<%--            data-bs-slide="next">--%>
-<%--        <span class="carousel-control-next-icon" aria-hidden="true"></span>--%>
-<%--        <span class="visually-hidden">Next</span>--%>
-<%--    </button>--%>
-<%--</div>--%>
-
 <div id="content" class="container-fluid p-5">
     <div class="content-header mb-5 text-center">
         <h1>Menu</h1>
@@ -211,7 +177,7 @@
                         <p>
                             Giá: ${food.price} đ
                         </p>
-                        <a href="#" class="btn btn-primary">Chọn</a>
+                        <a href="/food?actionUser=buy&id=${food.id}" class="btn btn-primary">Chọn</a>
                     </div>
                 </div>
             </div>

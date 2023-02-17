@@ -1,9 +1,12 @@
 package controller;
 
 import Model.Food;
+import Model.User;
 import repository.impl.BaseRepository;
 import service.IFoodService;
+import service.IUserService;
 import service.impl.FoodService;
+import service.impl.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,9 +40,22 @@ public class FoodServlet extends HttpServlet {
             case "beveragelist":
                 showBeverageList (request, response);
                 break;
+            case "buy":
+                showBuyForm (request, response);
             default:
                 showTotalListFood (request, response);
                 break;
+        }
+    }
+
+    private void showBuyForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Food food = foodService.findById(id);
+        request.setAttribute("food", food);
+        try {
+            request.getRequestDispatcher("/view/user/buy.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
         }
     }
 

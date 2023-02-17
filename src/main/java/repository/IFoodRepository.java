@@ -10,6 +10,7 @@ public interface IFoodRepository {
     List<Food> listFastFood();
     List<Food> ListBeverage();
     void addNewFood (Food food);
-
     void deleteFood(int id);
+    List<Food> listAllFood();
+    Food findById (int id);
 }
