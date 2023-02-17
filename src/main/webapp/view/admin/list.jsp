@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,12 +54,11 @@
     </div>
     <hr>
     <ul class="app-menu">
-        <li><a class="app-menu__item " href="#"><i class='app-menu__icon bx bx-id-card'></i>
-            <span class="app-menu__label">Quản lý nhân viên</span></a></li>
         <li><a class="app-menu__item " href="#"><i class='app-menu__icon bx bx-user-voice'></i><span
                 class="app-menu__label">Quản lý khách hàng</span></a></li>
-        <li><a class="app-menu__item active" href="quan-ly-mon-an.html"><i
+        <li><a class="app-menu__item active" href="/adminFood"><i
                 class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý món ăn</span></a>
+
         </li>
     </ul>
 </aside>
@@ -80,15 +80,16 @@
                                data-target="#addfood"><i class="fas fa-plus"></i>
                                 Tạo mới món ăn</a>
                         </div>
-                        <div class="col-sm-2">
-                            <a class="btn btn-delete btn-sm" type="button" title="Xóa" onclick="myFunction(this)"><i
-                                    class="fas fa-trash-alt"></i> Xóa tất cả </a>
-                        </div>
+                        <form class="form-group" action="/adminFood">
+                            <input type="text"
+                                   class="form-control" name="search" value="${search}">
+                            <input type="submit" value="Search" class="btn btn-secondary">
+                        </form>
                     </div>
                     <table class="table table-hover table-bordered">
                         <thead>
                         <tr>
-                            <th>Mã món ăn</th>
+                            <th>STT</th>
                             <th>Tên món ăn</th>
                             <th>Danh mục</th>
                             <th>Giá tiền</th>
@@ -98,34 +99,24 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Bún bò Huế</td>
-                            <td>Bún</td>
-                            <td>35.000</td>
-                            <td><img src="img/bún bò huế.jfif" alt="" width="100px;"></td>
-                            <td>bún bò</td>
-                            <td><button class="btn btn-primary btn-sm trash" type="button" id="delete" title="Xóa"
-                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                            </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fas fa-edit"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-
-                            <td>2</td>
-                            <td>Cơm tấm</td>
-                            <td>Cơm</td>
-                            <td>35.000</td>
-                            <td><img src="img/cơm tấm.jfif" alt="" width="100px;"></td>
-                            <td>cơm tấm</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm trash" type="button" title="Xóa"
-                                        onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
-                                </button>
-                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa"><i class="fas fa-edit"></i></button>
-                            </td>
-                        </tr>
+                        <c:forEach var="food" items="${foodList}" varStatus="stt">
+                            <tr>
+                                <td>${stt.count}</td>
+                                <td>${food.name}</td>
+                                <td><img src="${food.imgURL}" alt="" width="100px;"></td>
+                                <td>${food.description}</td>
+                                <td>${food.price}</td>
+                                <td>${food.category_name}</td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm trash" type="button" id="delete" title="Xóa"
+                                            onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                    </button>
+                                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
+                                            data-toggle="modal" data-target="#update"><i class="fas fa-edit"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -142,36 +133,49 @@
                 <h3 style="text-align:center; color: #ea0000;">THÊM MỚI MÓN ĂN</h3>
             </div>
             <div class="modal-body">
-                <form role="form" class="form-horizontal">
+                <form role="form" class="form-horizontal" action="/adminFood" method="get">
+                    <input type="hidden" name="actionUser" value="add">
                     <div class="form-group">
                         <div id="thongbao" class="text-danger" style="text-align: center;"></div>
                     </div>
                     <div class="form-group">
-                        <label for="id" class="control-label col-xs-3">Mã món ăn</label>
-                        <div class="col-md-12">
-                            <input type="number" class="form-control" id="txtMa">
-                        </div>
                     </div>
                     <div class="form-group">
                         <label for="txtName" class="control-label col-xs-3">Tên món ăn</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" id="txtName">
+                            <input type="text" class="form-control" id="txtName" name="name">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtDm" class="control-label">Danh mục</label>
                         <div class="col-md-12">
+                            <input type="hidden" name = "category">
                             <select class="form-control" id="txtDm">
                                 <option>-- Chọn danh mục --</option>
-                                <option>Bún</option>
-                                <option>Cơm</option>
+                                <option>Đồ ăn</option>
+                                <option>Đồ ăn nhanh</option>
+                                <option>Nước uống</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
+                        <label for="txtGia" class="control-label col-xs-3">Ảnh sản phẩm</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" id="txtGia" name="imgURL">
+                        </div>
+<%--                        <div class="col-md-12" id="myfileupload">--%>
+<%--                            <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);"/>--%>
+<%--                        </div>--%>
+<%--                        <div id="thumbbox">--%>
+<%--                            <img height="200" width="400" alt="Thumb image" id="thumbimage" style="display: none"/>--%>
+<%--                            <a class="removeimg" href="javascript:"></a>--%>
+<%--                        </div>--%>
+                    </div>
+                    <div class="form-group">
                         <label for="txtGia" class="control-label col-xs-3">Giá bán</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" id="txtGia">
+                            <input type="text" class="form-control" id="txtGia" name="price">
                         </div>
                     </div>
 
@@ -189,14 +193,18 @@
                     <div class="form-group">
                         <label for="txtMota" class="control-label col-xs-3">Mô tả</label>
                         <div class="col-md-12">
+                            <input id="txtMota" name="description">
+                        </div>
+                    </div>
+                </form>
+                <div class="modal-footer col-md-5 text-center">
+                    <button type="submit" id="btnSave" class="btn btn-success btn-block">Lưu</button>
+                    <button class="btn btn-cancel" data-dismiss="modal">Hủy bỏ</a>
+                </div>
                             <input type="text" class="form-control" id="txtMota">
                         </div>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer col-md-5 text-center">
-                <button type="button" id="btnSave" class="btn btn-success btn-block">Lưu</button>
-                <button class="btn btn-cancel" type="button" data-dismiss="modal">Hủy bỏ</a>
             </div>
         </div>
     </div>
@@ -249,7 +257,7 @@
                     <div class="form-group">
                         <label class="control-label">Ảnh sản phẩm</label>
                         <div class="col-md-12" id="uploadfile">
-                            <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
+                            <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);"/>
                         </div>
                         <div id="thumbbox">
                             <img height="200" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
@@ -290,8 +298,7 @@
                     $("#thumbimage").attr('src', e.target.result);
                 }
                 reader.readAsDataURL(input.files[0]);
-            }
-            else { // Sử dụng cho IE
+            } else { // Sử dụng cho IE
                 $("#thumbimage").attr('src', input.value);
 
             }
@@ -302,6 +309,7 @@
             $(".removeimg").show();
             $(".Choicefile").unbind('click');
         }
+
         $(document).ready(function () {
             $(".Choicefile").bind('click', function () {
                 $("#uploadfile").click();
