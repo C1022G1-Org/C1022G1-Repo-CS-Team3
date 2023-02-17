@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
     <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../datatables/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../../themify-icons/themify-icons.css">
 
 </head>
 
@@ -58,7 +59,8 @@
     <ul class="app-menu">
         <li><a href="/adminFood?actionUser=search" class="app-menu__item active" type="button" ><i class='app-menu__icon bx bx-user-voice'></i><span
                 class="app-menu__label">Quản lý khách hàng</span></a></li>
-        <li><a href="/adminFood?actionUser=searchOrder" class="app-menu__item active" type="button" ><i class='app-menu__icon bx bx-user-voice'></i><span
+        <li><a href="/adminFood?actionUser=searchOrder" class="app-menu__item active" type="button" ><i class='ti-list' style="    display: inline-block;
+    width: 38px;"></i><span
                 class="app-menu__label">Quản lý đơn hàng</span></a></li>
         <li><button class="app-menu__item active" type="button"><i
                 class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý món ăn</span></button>

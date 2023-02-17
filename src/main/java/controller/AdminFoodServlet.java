@@ -1,10 +1,13 @@
 package controller;
 
 import Model.Food;
+import Model.Order;
 import Model.User;
 import service.IFoodService;
+import service.IOrderService;
 import service.IUserService;
 import service.impl.FoodService;
+import service.impl.OrderService;
 import service.impl.UserService;
 
 import javax.servlet.ServletException;
@@ -19,6 +22,7 @@ import java.util.List;
 public class AdminFoodServlet extends HttpServlet {
     IFoodService foodService = new FoodService();
     IUserService userService = new UserService();
+    IOrderService orderService = new OrderService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String actionUser = request.getParameter("actionUser");
         if (actionUser == null) {
@@ -54,9 +58,24 @@ public class AdminFoodServlet extends HttpServlet {
             case "search":
                 performSearchUser (request, response);
                 break;
+            case "searchOrder":
+                performSearchOrder (request, response);
+                break;
             default:
                 showTotalListFood (request, response);
                 break;
+        }
+    }
+
+    private void performSearchOrder(HttpServletRequest request, HttpServletResponse response) {
+        String searchOrder = request.getParameter("searchOrder");
+        request.setAttribute("searchOrder", searchOrder);
+        List<Order> orderList = orderService.listByName(searchOrder);
+        request.setAttribute("orderList", orderList);
+        try {
+            request.getRequestDispatcher("/view/admin/listOrder.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
         }
     }
 
