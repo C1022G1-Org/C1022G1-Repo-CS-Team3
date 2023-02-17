@@ -1,8 +1,11 @@
 package controller;
 
 import Model.Food;
+import Model.User;
 import service.IFoodService;
+import service.IUserService;
 import service.impl.FoodService;
+import service.impl.UserService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +18,7 @@ import java.util.List;
 @WebServlet(name = "AdminFoodServlet", value = "/adminFood")
 public class AdminFoodServlet extends HttpServlet {
     IFoodService foodService = new FoodService();
+    IUserService userService = new UserService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String actionUser = request.getParameter("actionUser");
         if (actionUser == null) {
@@ -44,9 +48,24 @@ public class AdminFoodServlet extends HttpServlet {
             case "edit":
                 showEditForm (request, response);
                 break;
+            case "search":
+                performSearchUser (request, response);
+                break;
             default:
                 showTotalListFood (request, response);
                 break;
+        }
+    }
+
+    private void performSearchUser(HttpServletRequest request, HttpServletResponse response) {
+        String searchUser = request.getParameter("searchUser");
+        request.setAttribute("searchUser", searchUser);
+        List<User> userList = userService.listByName(searchUser);
+        request.setAttribute("userList", userList);
+        try {
+            request.getRequestDispatcher("/view/admin/listUser.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -83,7 +102,9 @@ public class AdminFoodServlet extends HttpServlet {
     private void showTotalListFood(HttpServletRequest request, HttpServletResponse response) {
         String search = request.getParameter("search");
         List<Food> foodList = foodService.listByName(search);
+        List<User> userList = userService.listAllUser();
         request.setAttribute("foodList", foodList);
+        request.setAttribute("userList", userList);
         request.setAttribute("search", search);
         try {
             request.getRequestDispatcher("/view/admin/list.jsp").forward(request, response);

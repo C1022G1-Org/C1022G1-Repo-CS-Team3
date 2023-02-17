@@ -140,4 +140,57 @@ public class FoodRepository implements IFoodRepository {
             throwables.printStackTrace();
         }
     }
+
+    @Override
+    public List<Food> listAllFood() {
+        List<Food> foodList = new ArrayList<>();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = BaseRepository.getConnection()
+                    .prepareStatement("select f.food_id, f.food_name, f.food_description, f.price, f.img_url, " +
+                            "fc.food_category_name from food f join food_category fc on f.food_category_id = fc.food_category_id");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Food food;
+            while (resultSet.next()) {
+                food = new Food();
+                food.setId(resultSet.getInt("f.food_id"));
+                food.setImgURL(resultSet.getString("f.img_url"));
+                food.setName(resultSet.getString("f.food_name"));
+                food.setDescription(resultSet.getString("f.food_description"));
+                food.setPrice(resultSet.getInt("f.price"));
+                food.setCategory_name(resultSet.getString("fc.food_category_name"));
+                foodList.add(food);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return foodList;
+    }
+
+    @Override
+    public Food findById(int id) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = BaseRepository.getConnection()
+                    .prepareStatement("select f.food_id, f.food_name, f.food_description, f.price, f.img_url, fc.food_category_name \n" +
+                            "from food f join food_category fc on f.food_category_id = fc.food_category_id where f.food_id = ?");
+            preparedStatement.setInt(1,id);
+            Food food;
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                food = new Food();
+                food.setId(resultSet.getInt("f.food_id"));
+                food.setImgURL(resultSet.getString("f.img_url"));
+                food.setName(resultSet.getString("f.food_name"));
+                food.setDescription(resultSet.getString("f.food_description"));
+                food.setPrice(resultSet.getInt("f.price"));
+                food.setCategory_name(resultSet.getString("fc.food_category_name"));
+                return food;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return null;
+    }
 }

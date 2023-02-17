@@ -4,7 +4,7 @@ public class User {
     private int id;
     private String name;
     private String loginName;
-    private String login_password;
+    private String loginPassword;
     private String role;
     private String dateOfBirth;
     private int gender;
@@ -14,11 +14,11 @@ public class User {
     public User() {
     }
 
-    public User(int id, String name, String loginName, String login_password, String role, String dateOfBirth, int gender, String email, String address) {
+    public User(int id, String name, String loginName, String loginPassword, String role, String dateOfBirth, int gender, String email, String address) {
         this.id = id;
         this.name = name;
         this.loginName = loginName;
-        this.login_password = login_password;
+        this.loginPassword = loginPassword;
         this.role = role;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -50,12 +50,12 @@ public class User {
         this.loginName = loginName;
     }
 
-    public String getLogin_password() {
-        return login_password;
+    public String getloginPassword() {
+        return loginPassword;
     }
 
-    public void setLogin_password(String login_password) {
-        this.login_password = login_password;
+    public void setloginPassword(String loginPassword) {
+        this.loginPassword = loginPassword;
     }
 
     public String getRole() {

@@ -27,6 +27,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../datatables/css/dataTables.bootstrap5.min.css">
 
 </head>
 
@@ -54,18 +56,19 @@
     </div>
     <hr>
     <ul class="app-menu">
-        <li><a class="app-menu__item " href="#"><i class='app-menu__icon bx bx-user-voice'></i><span
+        <li><a href="/adminFood?actionUser=search" class="app-menu__item active" type="button" ><i class='app-menu__icon bx bx-user-voice'></i><span
                 class="app-menu__label">Quản lý khách hàng</span></a></li>
-        <li><a class="app-menu__item active" href="/adminFood"><i
-                class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý món ăn</span></a>
-
+        <li><a href="/adminFood?actionUser=searchOrder" class="app-menu__item active" type="button" ><i class='app-menu__icon bx bx-user-voice'></i><span
+                class="app-menu__label">Quản lý đơn hàng</span></a></li>
+        <li><button class="app-menu__item active" type="button"><i
+                class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý món ăn</span></button>
         </li>
     </ul>
 </aside>
-<main class="app-content">
+<main class="app-content" id="food">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb side">
-            <li class="breadcrumb-item active"><a href="#"><b>Danh sách món ăn</b></a></li>
+            <li class="breadcrumb-item active"><a href="/adminFood"><b>Danh sách món ăn</b></a></li>
         </ul>
         <div id="clock"></div>
     </div>
@@ -80,13 +83,13 @@
                                data-target="#addfood"><i class="fas fa-plus"></i>
                                 Tạo mới món ăn</a>
                         </div>
-                        <form class="form-group" action="/adminFood">
+                        <form class="form-group w-25" action="/adminFood" >
                             <input type="text"
                                    class="form-control" name="search" value="${search}">
                             <input type="submit" value="Search" class="btn btn-secondary">
                         </form>
                     </div>
-                    <table class="table table-hover table-bordered">
+                    <table id="tableStudent" class="table table-hover table-striped table-bordered" style="width: 100%">
                         <thead>
                         <tr>
                             <th>STT</th>
@@ -123,6 +126,68 @@
         </div>
     </div>
 </main>
+<%-- user --%>
+<%--<main class="app-content" id="user">--%>
+<%--    <div class="app-title">--%>
+<%--        <ul class="app-breadcrumb breadcrumb side">--%>
+<%--            <li class="breadcrumb-item active"><a href="/adminFood?actionUser=search"><b>Danh sách user</b></a></li>--%>
+<%--        </ul>--%>
+<%--        <div id="clock"></div>--%>
+<%--    </div>--%>
+<%--    <div class="row">--%>
+<%--        <div class="col-md-12">--%>
+<%--            <div class="tile">--%>
+<%--                <div class="tile-body">--%>
+<%--                    <div class="row element-button">--%>
+<%--                        <form class="form-group w-25" action="/adminFood" method="get">--%>
+<%--                            <input type="hidden" name="actionUser" value="search">--%>
+<%--                            <input type="text"--%>
+<%--                                   class="form-control" name="searchUser" value="${searchUser}">--%>
+<%--                            <input type="submit" value="Search" class="btn btn-secondary" id="" onclick="showSearchUser()">--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
+<%--                    <table id="tableStudent" class="table table-hover table-striped table-bordered" style="width: 100%">--%>
+<%--                        <thead>--%>
+<%--                        <tr>--%>
+<%--                            <th>STT</th>--%>
+<%--                            <th>Tên user</th>--%>
+<%--                            <th>Tên đăng nhập</th>--%>
+<%--                            <th>Mật khẩu đăng nhập</th>--%>
+<%--                            <th>Vai trò</th>--%>
+<%--                            <th>Ngày sinh</th>--%>
+<%--                            <th>Giới tính</th>--%>
+<%--                            <th>Email</th>--%>
+<%--                            <th>Địa chỉ</th>--%>
+<%--                        </tr>--%>
+<%--                        </thead>--%>
+<%--                        <tbody>--%>
+<%--                        <c:forEach var="user" items="${userList}" varStatus="stt">--%>
+<%--                            <tr>--%>
+<%--                                <td>${stt.count}</td>--%>
+<%--                                <td>${user.name}</td>--%>
+<%--                                <td>${user.loginName}</td>--%>
+<%--                                <td>${user.loginPassword}</td>--%>
+<%--                                <td>${user.role}</td>--%>
+<%--                                <td>${user.dateOfBirth}</td>--%>
+<%--                                <td>${user.gender}</td>--%>
+<%--                                <td>${user.email}</td>--%>
+<%--                                <td>${user.address}</td>--%>
+<%--                                <td>--%>
+<%--                                    <button type="button" onclick="deleteUser('${user.id}','${user.name}')" class="btn btn-danger"--%>
+<%--                                            data-toggle="modal" data-target="#exampleModal">--%>
+<%--                                        <i class="fas fa-trash-alt"></i>--%>
+<%--                                    </button>--%>
+<%--                                    <a href="/adminFood?actionUser=edit&id=${user.id}" class="btn btn-primary"><i class="fas fa-edit"></i></a>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
+<%--                        </c:forEach>--%>
+<%--                        </tbody>--%>
+<%--                    </table>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--</main>--%>
 
 <%-- modal xóa --%>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -210,6 +275,9 @@
         </div>
     </div>
 </div>
+    <script src="../../jquery/jquery-3.5.1.min.js"></script>
+    <script src="../../datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
     <script src="../../js/jquery-3.2.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
@@ -221,41 +289,26 @@
         function deleteInfo(id) {
             document.getElementById("deleteId").value = id;
         }
-//        function readURL(input, thumbimage) {
-//            if (input.files && input.files[0]) {
-//                var reader = new FileReader();
-//                reader.onload = function (e) {
-//                    $("#thumbimage").attr('src', e.target.result);
-//                }
-//                reader.readAsDataURL(input.files[0]);
-//            } else { // Sử dụng cho IE
-//                $("#thumbimage").attr('src', input.value);
-//
-//            }
-//            $("#thumbimage").show();
-//            $('.filename').text($("#uploadfile").val());
-//            $('.Choicefile').css('background', '#14142B');
-//            $('.Choicefile').css('cursor', 'default');
-//            $(".removeimg").show();
-//            $(".Choicefile").unbind('click');
-//        }
-//
-//        $(document).ready(function () {
-//            $(".Choicefile").bind('click', function () {
-//                $("#uploadfile").click();
-//            });
-//            $(".removeimg").click(function () {
-//                $("#thumbimage").attr('src', '').hide();
-//                $("#myfileupload").html('<input type="file" id="uploadfile"  onchange="readURL(this);" />');
-//                $(".removeimg").hide();
-//                $(".Choicefile").bind('click', function () {
-//                    $("#uploadfile").click();
-//                });
-//                $('.Choicefile').css('background', '#14142B');
-//                $('.Choicefile').css('cursor', 'pointer');
-//                $(".filename").text("");
-//            });
-//        })
+
+        function deleteUser(id) {
+            document.getElementById("deleteUserId").value = id;
+        }
+        $(document).ready(function () {
+            $('#tableStudent').dataTable({
+                "dom": 'ltrip',
+                "lengthChange": false,
+                "pageLength": 5
+            });
+        });
+        function showFoodTable() {
+            document.getElementById('food').style.display = 'block'
+            document.getElementById('user').style.display = 'none'
+        }
+
+        function showUserTable() {
+            document.getElementById('food').style.display = 'none'
+            document.getElementById('user').style.display = 'block'
+        }
     </script>
 </body>
 
