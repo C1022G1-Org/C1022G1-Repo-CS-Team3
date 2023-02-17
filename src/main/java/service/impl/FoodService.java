@@ -52,5 +52,10 @@ public class FoodService implements IFoodService {
         return foodRepository.findById(id);
     }
 
+    @Override
+    public void updateFood(Food food) {
+        foodRepository.updateFood(food);
+    }
+
 
 }

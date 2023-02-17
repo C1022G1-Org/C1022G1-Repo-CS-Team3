@@ -2,14 +2,14 @@
   Created by IntelliJ IDEA.
   User: DELL
   Date: 17/02/2023
-  Time: 3:47 CH
+  Time: 7:07 CH
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Buy</title>
+    <title>Update</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,38 +19,25 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<table >
-    <thead>
-    <tr>
-        <th><img src="${food.imgURL}" alt=""></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th>Tên thức ăn</th>
-        <td>${food.name}</td>
-    </tr>
-    <tr>
-        <th>Giá</th>
-        <td>${food.price}đ</td>
-    </tr>
-    <tr>
-        <th>Mô tả</th>
-        <td>${food.description}</td>
-    </tr>
-    <tr>
-        <th>Loại thức ăn</th>
-        <td>${food.category_name}</td>
-    </tr>
-    <tr>
-        <th>Số lượng</th>
-        <td><input type="number" name="" id=""></td>
-    </tr>
-    <tr>
-        <input type="submit" value="Mua">
-    </tr>
-    </tbody>
-</table>
+<form method="post" class="form-group">
+    <input type="hidden" value="${food.id}">
+    <label for="name">Input Name</label>
+    <input type="text" class="form-control" name="name" id="name" value="${food.name}">
+
+    <label for="imgURL">Input imgURL</label>
+    <input type="text" class="form-control" name="name" id="imgURL" value="${food.imgURL}">
+
+    <label for="description">Input Description</label>
+    <input type="text" class="form-control" name="description" id="description" value="${food.description}">
+
+    <label for="price">Input Price</label>
+    <input type="text" class="form-control" name="price" id="price" value="${food.price}">
+
+    <label for="categoryName">Input Category Name</label>
+    <input type="text" class="form-control" name="categoryName" id="categoryName" value="${food.categoryName}">
+
+    <input type="submit" value="Cập nhật" class="btn btn-secondary mt-3">
+</form>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

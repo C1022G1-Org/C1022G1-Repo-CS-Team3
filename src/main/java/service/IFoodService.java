@@ -13,4 +13,5 @@ public interface IFoodService {
     void deleteFood(int id);
     List<Food> listAllFood();
     Food findById (int id);
+    void updateFood(Food food);
 }

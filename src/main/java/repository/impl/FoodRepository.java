@@ -30,7 +30,7 @@ public class FoodRepository implements IFoodRepository {
                 food.setName(resultSet.getString("f.food_name"));
                 food.setDescription(resultSet.getString("f.food_description"));
                 food.setPrice(resultSet.getInt("f.price"));
-                food.setCategory_name(resultSet.getString("fc.food_category_name"));
+                food.setCategoryName(resultSet.getString("fc.food_category_name"));
                 foodList.add(food);
             }
         } catch (SQLException throwables) {
@@ -121,7 +121,7 @@ public class FoodRepository implements IFoodRepository {
             preparedStatement.setString(2, food.getDescription());
             preparedStatement.setInt(3, food.getPrice());
             preparedStatement.setString(4, food.getImgURL());
-            preparedStatement.setString(5, food.getCategory_name());
+            preparedStatement.setString(5, food.getCategoryName());
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -158,7 +158,7 @@ public class FoodRepository implements IFoodRepository {
                 food.setName(resultSet.getString("f.food_name"));
                 food.setDescription(resultSet.getString("f.food_description"));
                 food.setPrice(resultSet.getInt("f.price"));
-                food.setCategory_name(resultSet.getString("fc.food_category_name"));
+                food.setCategoryName(resultSet.getString("fc.food_category_name"));
                 foodList.add(food);
             }
         } catch (SQLException throwables) {
@@ -184,7 +184,7 @@ public class FoodRepository implements IFoodRepository {
                 food.setName(resultSet.getString("f.food_name"));
                 food.setDescription(resultSet.getString("f.food_description"));
                 food.setPrice(resultSet.getInt("f.price"));
-                food.setCategory_name(resultSet.getString("fc.food_category_name"));
+                food.setCategoryName(resultSet.getString("fc.food_category_name"));
                 return food;
             }
         } catch (SQLException throwables) {
@@ -192,5 +192,25 @@ public class FoodRepository implements IFoodRepository {
         }
 
         return null;
+    }
+
+    @Override
+    public void updateFood(Food food) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = BaseRepository.getConnection()
+                    .prepareStatement("update food \n" +
+                            "set food_name = ?, food_description = ?, price = ?, img_url =?, food_category_id=? \n" +
+                            "where food_id = ?");
+            preparedStatement.setString(1, food.getName());
+            preparedStatement.setString(2, food.getDescription());
+            preparedStatement.setInt(3, food.getPrice());
+            preparedStatement.setString(4, food.getImgURL());
+            preparedStatement.setString(5, food.getCategoryName());
+            preparedStatement.setInt(6, food.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
