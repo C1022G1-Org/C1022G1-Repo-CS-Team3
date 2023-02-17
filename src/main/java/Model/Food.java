@@ -6,34 +6,34 @@ public class Food {
     private String description;
     private int price;
     private String imgURL;
-    private String category_name;
+    private String categoryName;
 
     public Food() {
     }
 
-    public Food(int id, String name, String description, int price, String imgURL, String category_name) {
+    public Food(int id, String name, String description, int price, String imgURL, String categoryName) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
         this.imgURL = imgURL;
-        this.category_name = category_name;
+        this.categoryName = categoryName;
     }
 
-    public String getCategory_name() {
-        return category_name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setCategory_name(String category_name) {
-        this.category_name = category_name;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public Food(String name, String description, int price, String imgURL, String category_name) {
+    public Food(String name, String description, int price, String imgURL, String categoryName) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.imgURL = imgURL;
-        this.category_name = category_name;
+        this.categoryName = categoryName;
     }
 
     public int getId() {

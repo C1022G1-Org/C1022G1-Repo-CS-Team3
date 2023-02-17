@@ -94,10 +94,10 @@
                         <tr>
                             <th>STT</th>
                             <th>Tên món ăn</th>
-                            <th>Danh mục</th>
-                            <th>Giá tiền</th>
-                            <th>Ảnh</th>
-                            <th>Mô tả</th>
+                            <th>Ảnh</th>
+                            <th>Mô tả</th>
+                            <th>Giá</th>
+                            <th>Danh Mục</th>
                             <th>Chức năng</th>
                         </tr>
                         </thead>
@@ -109,7 +109,7 @@
                                 <td><img src="${food.imgURL}" alt="" width="100px;"></td>
                                 <td>${food.description}</td>
                                 <td>${food.price}</td>
-                                <td>${food.category_name}</td>
+                                <td>${food.categoryName}</td>
                                 <td>
                                     <button type="button" onclick="deleteInfo('${food.id}','${food.name}')" class="btn btn-danger"
                                             data-toggle="modal" data-target="#exampleModal">
@@ -126,68 +126,6 @@
         </div>
     </div>
 </main>
-<%-- user --%>
-<%--<main class="app-content" id="user">--%>
-<%--    <div class="app-title">--%>
-<%--        <ul class="app-breadcrumb breadcrumb side">--%>
-<%--            <li class="breadcrumb-item active"><a href="/adminFood?actionUser=search"><b>Danh sách user</b></a></li>--%>
-<%--        </ul>--%>
-<%--        <div id="clock"></div>--%>
-<%--    </div>--%>
-<%--    <div class="row">--%>
-<%--        <div class="col-md-12">--%>
-<%--            <div class="tile">--%>
-<%--                <div class="tile-body">--%>
-<%--                    <div class="row element-button">--%>
-<%--                        <form class="form-group w-25" action="/adminFood" method="get">--%>
-<%--                            <input type="hidden" name="actionUser" value="search">--%>
-<%--                            <input type="text"--%>
-<%--                                   class="form-control" name="searchUser" value="${searchUser}">--%>
-<%--                            <input type="submit" value="Search" class="btn btn-secondary" id="" onclick="showSearchUser()">--%>
-<%--                        </form>--%>
-<%--                    </div>--%>
-<%--                    <table id="tableStudent" class="table table-hover table-striped table-bordered" style="width: 100%">--%>
-<%--                        <thead>--%>
-<%--                        <tr>--%>
-<%--                            <th>STT</th>--%>
-<%--                            <th>Tên user</th>--%>
-<%--                            <th>Tên đăng nhập</th>--%>
-<%--                            <th>Mật khẩu đăng nhập</th>--%>
-<%--                            <th>Vai trò</th>--%>
-<%--                            <th>Ngày sinh</th>--%>
-<%--                            <th>Giới tính</th>--%>
-<%--                            <th>Email</th>--%>
-<%--                            <th>Địa chỉ</th>--%>
-<%--                        </tr>--%>
-<%--                        </thead>--%>
-<%--                        <tbody>--%>
-<%--                        <c:forEach var="user" items="${userList}" varStatus="stt">--%>
-<%--                            <tr>--%>
-<%--                                <td>${stt.count}</td>--%>
-<%--                                <td>${user.name}</td>--%>
-<%--                                <td>${user.loginName}</td>--%>
-<%--                                <td>${user.loginPassword}</td>--%>
-<%--                                <td>${user.role}</td>--%>
-<%--                                <td>${user.dateOfBirth}</td>--%>
-<%--                                <td>${user.gender}</td>--%>
-<%--                                <td>${user.email}</td>--%>
-<%--                                <td>${user.address}</td>--%>
-<%--                                <td>--%>
-<%--                                    <button type="button" onclick="deleteUser('${user.id}','${user.name}')" class="btn btn-danger"--%>
-<%--                                            data-toggle="modal" data-target="#exampleModal">--%>
-<%--                                        <i class="fas fa-trash-alt"></i>--%>
-<%--                                    </button>--%>
-<%--                                    <a href="/adminFood?actionUser=edit&id=${user.id}" class="btn btn-primary"><i class="fas fa-edit"></i></a>--%>
-<%--                                </td>--%>
-<%--                            </tr>--%>
-<%--                        </c:forEach>--%>
-<%--                        </tbody>--%>
-<%--                    </table>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
-<%--</main>--%>
 
 <%-- modal xóa --%>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"

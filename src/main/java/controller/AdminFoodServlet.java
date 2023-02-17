@@ -29,6 +29,9 @@ public class AdminFoodServlet extends HttpServlet {
             case "add":
                 performCreate (request, response);
                 break;
+            case "edit":
+                performEdit (request, response);
+                break;
             default:
                 showTotalListFood (request, response);
                 break;
@@ -69,8 +72,36 @@ public class AdminFoodServlet extends HttpServlet {
         }
     }
 
-    private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
+    private void performEdit(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String name = request.getParameter("name");
+        String imgURL = request.getParameter("imgURL");
+        String description = request.getParameter("description");
+        int price = Integer.parseInt(request.getParameter("price"));
+        String categoryName = request.getParameter("categoryName");
+        Food food = foodService.findById(id);
+        food.setName(name);
+        food.setImgURL(imgURL);
+        food.setDescription(description);
+        food.setPrice(price);
+        food.setCategoryName(categoryName);
+        foodService.updateFood(food);
+        try {
+            response.sendRedirect("/adminFood");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Food food = foodService.findById(id);
+        request.setAttribute("food", food);
+        try {
+            request.getRequestDispatcher("/view/admin/update.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void performDelete(HttpServletRequest request, HttpServletResponse response) {
