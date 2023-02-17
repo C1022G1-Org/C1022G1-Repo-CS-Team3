@@ -116,12 +116,25 @@ public class FoodRepository implements IFoodRepository {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = BaseRepository.getConnection()
-                    .prepareStatement("insert into food (food_name, food_description, price, img_url, food_category_id) values (?, ?, ?, ?,?)");
+                    .prepareStatement("insert into food (food_name, food_description, price, img_url, food_category_id) values (?, ?, ?, ?, ?)");
             preparedStatement.setString(1, food.getName());
             preparedStatement.setString(2, food.getDescription());
             preparedStatement.setInt(3, food.getPrice());
             preparedStatement.setString(4, food.getImgURL());
             preparedStatement.setString(5, food.getCategory_name());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteFood(int id) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = BaseRepository.getConnection()
+                    .prepareStatement("delete from food where food_id = ?");
+            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();

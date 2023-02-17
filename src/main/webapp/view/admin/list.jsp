@@ -108,12 +108,11 @@
                                 <td>${food.price}</td>
                                 <td>${food.category_name}</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm trash" type="button" id="delete" title="Xóa"
-                                            onclick="myFunction(this)"><i class="fas fa-trash-alt"></i>
+                                    <button type="button" onclick="deleteInfo('${food.id}','${food.name}')" class="btn btn-danger"
+                                            data-toggle="modal" data-target="#exampleModal">
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
-                                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
-                                            data-toggle="modal" data-target="#update"><i class="fas fa-edit"></i>
-                                    </button>
+                                    <a href="/adminFood?actionUser=edit&id=${food.id}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -124,6 +123,32 @@
         </div>
     </div>
 </main>
+
+<%-- modal xóa --%>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete User Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/adminFood" method="get">
+                <div class="modal-body">
+                    <input type="hidden" name="actionUser" value="delete">
+                    <input hidden type="text" id="deleteId" name="deleteId">
+                    Confirm delete this item?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-danger">Yes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <!-- modal thêm mới -->
 <div class="modal fade" id="addfood" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
      data-keyboard="false">
@@ -133,8 +158,7 @@
                 <h3 style="text-align:center; color: #ea0000;">THÊM MỚI MÓN ĂN</h3>
             </div>
             <div class="modal-body">
-                <form role="form" class="form-horizontal" action="/adminFood" method="get">
-                    <input type="hidden" name="actionUser" value="add">
+                <form role="form" class="form-horizontal" action="/adminFood?actionUser=add" method="post">
                     <div class="form-group">
                         <div id="thongbao" class="text-danger" style="text-align: center;"></div>
                     </div>
@@ -149,28 +173,14 @@
                     <div class="form-group">
                         <label for="txtDm" class="control-label">Danh mục</label>
                         <div class="col-md-12">
-                            <input type="hidden" name = "category">
-                            <select class="form-control" id="txtDm">
-                                <option>-- Chọn danh mục --</option>
-                                <option>Đồ ăn</option>
-                                <option>Đồ ăn nhanh</option>
-                                <option>Nước uống</option>
-                            </select>
+                            <input type="text" class="form-control" name ="category">
                         </div>
                     </div>
                     <div class="form-group">
-<<<<<<< HEAD
                         <label for="txtGia" class="control-label col-xs-3">Ảnh sản phẩm</label>
                         <div class="col-md-12">
                             <input type="text" class="form-control" id="txtGia" name="imgURL">
                         </div>
-<%--                        <div class="col-md-12" id="myfileupload">--%>
-<%--                            <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);"/>--%>
-<%--                        </div>--%>
-<%--                        <div id="thumbbox">--%>
-<%--                            <img height="200" width="400" alt="Thumb image" id="thumbimage" style="display: none"/>--%>
-<%--                            <a class="removeimg" href="javascript:"></a>--%>
-<%--                        </div>--%>
                     </div>
                     <div class="form-group">
                         <label for="txtGia" class="control-label col-xs-3">Giá bán</label>
@@ -180,108 +190,26 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label">Ảnh sản phẩm</label>
-                        <div class="col-md-12" id="myfileupload">
-                            <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);" />
-                        </div>
-                        <div id="thumbbox">
-                            <img height="200" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
-                            <a class="removeimg" href="javascript:"></a>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
                         <label for="txtMota" class="control-label col-xs-3">Mô tả</label>
                         <div class="col-md-12">
-                            <input id="txtMota" name="description">
+                            <input type="text" class="form-control" id="txtGia" name="description">
                         </div>
                     </div>
-                </form>
-                <div class="modal-footer col-md-5 text-center">
-                    <button type="submit" id="btnSave" class="btn btn-success btn-block">Lưu</button>
-                    <button class="btn btn-cancel" data-dismiss="modal">Hủy bỏ</a>
-                </div>
-                            <input type="text" class="form-control" id="txtMota">
-                        </div>
+<%--                    <div class="form-group">--%>
+<%--                        <label for="txtLoai" class="control-label col-xs-3">Loại đồ ăn</label>--%>
+<%--                        <div class="col-md-12">--%>
+<%--                            <input type="text" class="form-control" id="txtGia" name="category_name">--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+                    <div class="modal-footer col-md-5 text-center">
+                        <input type="submit" id="btnSave" class="btn btn-success btn-block" value="Lưu">
+                        <button class="btn btn-cancel" data-dismiss="modal">Hủy bỏ</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!--
-  MODAL upate
--->
-<div class="modal fade" id="update" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-     data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header col-md-9">
-                <h3 style="text-align:center; color: #ea0000;">SỬA THÔNG TIN MÓN ĂN</h3>
-            </div>
-            <div class="modal-body">
-                <form role="form" class="form-horizontal">
-                    <div class="form-group">
-                        <div id="thongbao" class="text-danger" style="text-align: center;"></div>
-                    </div>
-                    <div class="form-group">
-                        <label for="idup" class="control-label col-xs-3">Mã món ăn</label>
-                        <div class="col-md-12">
-                            <input type="number" class="form-control" id="idup">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtName" class="control-label col-xs-3">Tên món ăn</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" id="nameup">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtDm" class="control-label">Danh mục</label>
-                        <div class="col-md-12">
-                            <select class="form-control" id="dmup">
-                                <option>-- Chọn danh mục --</option>
-                                <option>Bún</option>
-                                <option>Cơm</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="txtGia" class="control-label col-xs-3">Giá bán</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" id="gia">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="control-label">Ảnh sản phẩm</label>
-                        <div class="col-md-12" id="uploadfile">
-                            <input type="file" id="uploadfile" name="ImageUpload" onchange="readURL(this);"/>
-                        </div>
-                        <div id="thumbbox">
-                            <img height="200" width="300" alt="Thumb image" id="thumbimage" style="display: none" />
-                            <a class="removeimg" href="javascript:"></a>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="txtMota" class="control-label col-xs-3">Mô tả</label>
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" id="txtMota">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer col-md-5 text-center">
-                <button type="button" id="save" class="btn btn-success btn-block">Lưu</button>
-                <button class="btn btn-cancel" data-dismiss="modal">Hủy bỏ</a>
-            </div>
-        </div>
-    </div>
-    <!--
-    MODAL
-    -->
     <script src="../../js/jquery-3.2.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>
     <script src="../../js/bootstrap.min.js"></script>
@@ -290,42 +218,44 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
     <script type="text/javascript" src="../../js/addfood.js"></script>
     <script>
-
-        function readURL(input, thumbimage) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $("#thumbimage").attr('src', e.target.result);
-                }
-                reader.readAsDataURL(input.files[0]);
-            } else { // Sử dụng cho IE
-                $("#thumbimage").attr('src', input.value);
-
-            }
-            $("#thumbimage").show();
-            $('.filename').text($("#uploadfile").val());
-            $('.Choicefile').css('background', '#14142B');
-            $('.Choicefile').css('cursor', 'default');
-            $(".removeimg").show();
-            $(".Choicefile").unbind('click');
+        function deleteInfo(id) {
+            document.getElementById("deleteId").value = id;
         }
-
-        $(document).ready(function () {
-            $(".Choicefile").bind('click', function () {
-                $("#uploadfile").click();
-            });
-            $(".removeimg").click(function () {
-                $("#thumbimage").attr('src', '').hide();
-                $("#myfileupload").html('<input type="file" id="uploadfile"  onchange="readURL(this);" />');
-                $(".removeimg").hide();
-                $(".Choicefile").bind('click', function () {
-                    $("#uploadfile").click();
-                });
-                $('.Choicefile').css('background', '#14142B');
-                $('.Choicefile').css('cursor', 'pointer');
-                $(".filename").text("");
-            });
-        })
+//        function readURL(input, thumbimage) {
+//            if (input.files && input.files[0]) {
+//                var reader = new FileReader();
+//                reader.onload = function (e) {
+//                    $("#thumbimage").attr('src', e.target.result);
+//                }
+//                reader.readAsDataURL(input.files[0]);
+//            } else { // Sử dụng cho IE
+//                $("#thumbimage").attr('src', input.value);
+//
+//            }
+//            $("#thumbimage").show();
+//            $('.filename').text($("#uploadfile").val());
+//            $('.Choicefile').css('background', '#14142B');
+//            $('.Choicefile').css('cursor', 'default');
+//            $(".removeimg").show();
+//            $(".Choicefile").unbind('click');
+//        }
+//
+//        $(document).ready(function () {
+//            $(".Choicefile").bind('click', function () {
+//                $("#uploadfile").click();
+//            });
+//            $(".removeimg").click(function () {
+//                $("#thumbimage").attr('src', '').hide();
+//                $("#myfileupload").html('<input type="file" id="uploadfile"  onchange="readURL(this);" />');
+//                $(".removeimg").hide();
+//                $(".Choicefile").bind('click', function () {
+//                    $("#uploadfile").click();
+//                });
+//                $('.Choicefile').css('background', '#14142B');
+//                $('.Choicefile').css('cursor', 'pointer');
+//                $(".filename").text("");
+//            });
+//        })
     </script>
 </body>
 

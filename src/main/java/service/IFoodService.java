@@ -10,4 +10,6 @@ public interface IFoodService {
     List<Food> listFastFood();
     List<Food> ListBeverage();
     void addNewFood (Food food);
+
+    void deleteFood(int id);
 }

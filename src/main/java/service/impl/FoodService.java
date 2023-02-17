@@ -37,5 +37,10 @@ public class FoodService implements IFoodService {
         foodRepository.addNewFood(food);
     }
 
+    @Override
+    public void deleteFood(int id) {
+        foodRepository.deleteFood(id);
+    }
+
 
 }

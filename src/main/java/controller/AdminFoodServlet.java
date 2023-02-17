@@ -16,10 +16,6 @@ import java.util.List;
 public class AdminFoodServlet extends HttpServlet {
     IFoodService foodService = new FoodService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String actionUser = request.getParameter("actionUser");
         if (actionUser == null) {
             actionUser = "";
@@ -29,13 +25,42 @@ public class AdminFoodServlet extends HttpServlet {
             case "add":
                 performCreate (request, response);
                 break;
-            case "fastfoodlist":
+            default:
+                showTotalListFood (request, response);
                 break;
-            case "beveragelist":
+        }
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String actionUser = request.getParameter("actionUser");
+        if (actionUser == null) {
+            actionUser = "";
+        }
+
+        switch (actionUser) {
+            case "delete":
+                performDelete (request, response);
+                break;
+            case "edit":
+                showEditForm (request, response);
                 break;
             default:
                 showTotalListFood (request, response);
                 break;
+        }
+    }
+
+    private void showEditForm(HttpServletRequest request, HttpServletResponse response) {
+
+    }
+
+    private void performDelete(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("deleteId"));
+        foodService.deleteFood (id);
+        try {
+            response.sendRedirect("/adminFood");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -45,10 +70,11 @@ public class AdminFoodServlet extends HttpServlet {
         String imgURL = request.getParameter("imgURL");
         String description = request.getParameter("description");
         int price = Integer.parseInt(request.getParameter("price"));
+//        String category_name = request.getParameter("category_name");
         Food food = new Food(name, description, price, imgURL, category);
         foodService.addNewFood(food);
         try {
-            response.sendRedirect("/admiNFood");
+            response.sendRedirect("/adminFood");
         } catch (IOException e) {
             e.printStackTrace();
         }
