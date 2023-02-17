@@ -83,7 +83,8 @@
                         <form class="form-group w-25" action="/adminFood" method="get">
                             <input type="hidden" name="actionUser" value="search">
                             <input type="text"
-                                   class="form-control" name="searchUser" value="${searchUser}">
+                                   class="form-control" name="searchUser" value="${searchUser}" style="width: 200px;
+                                   display: inline-block">
                             <input type="submit" value="Search" class="btn btn-secondary" id="" onclick="showSearchUser()">
                         </form>
                     </div>
@@ -202,12 +203,6 @@
                             <input type="text" class="form-control" id="txtGia" name="description">
                         </div>
                     </div>
-                    <%--                    <div class="form-group">--%>
-                    <%--                        <label for="txtLoai" class="control-label col-xs-3">Loại đồ ăn</label>--%>
-                    <%--                        <div class="col-md-12">--%>
-                    <%--                            <input type="text" class="form-control" id="txtGia" name="category_name">--%>
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
                     <div class="modal-footer col-md-5 text-center">
                         <input type="submit" id="btnSave" class="btn btn-success btn-block" value="Lưu">
                         <button class="btn btn-cancel" data-dismiss="modal">Hủy bỏ</button>

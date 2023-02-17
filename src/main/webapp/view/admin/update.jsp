@@ -19,13 +19,13 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<form method="post" class="form-group">
-    <input type="hidden" value="${food.id}">
+<form action="/adminFood?actionUser=edit" method="post">
+    <input type="hidden" name="id" value="${food.id}">
     <label for="name">Input Name</label>
     <input type="text" class="form-control" name="name" id="name" value="${food.name}">
 
     <label for="imgURL">Input imgURL</label>
-    <input type="text" class="form-control" name="name" id="imgURL" value="${food.imgURL}">
+    <input type="text" class="form-control" name="imgURL" id="imgURL" value="${food.imgURL}">
 
     <label for="description">Input Description</label>
     <input type="text" class="form-control" name="description" id="description" value="${food.description}">

@@ -27,6 +27,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+
+    <%-- css thêm --%>
     <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../datatables/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="../../themify-icons/themify-icons.css">
@@ -56,13 +58,17 @@
     </div>
     <hr>
     <ul class="app-menu">
-        <li><a href="/adminFood?actionUser=search" class="app-menu__item active" type="button"><i class='app-menu__icon bx bx-user-voice'></i><span
+        <li><a href="/adminFood?actionUser=search" class="app-menu__item active" type="button"><i
+                class='app-menu__icon bx bx-user-voice'></i><span
                 class="app-menu__label">Quản lý khách hàng</span></a></li>
-        <li><button class="app-menu__item active" type="button" ><i class='ti-list' style="    display: inline-block;
+        <li>
+            <button class="app-menu__item active" type="button"><i class='ti-list' style="    display: inline-block;
     width: 38px;"></i><span
-                class="app-menu__label">Quản lý đơn hàng</span></button></li>
+                    class="app-menu__label">Quản lý đơn hàng</span></button>
+        </li>
         <li><a href="/adminFood" class="app-menu__item active" type="button"><i
-                class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý món ăn</span></a>
+                class='app-menu__icon bx bx-purchase-tag-alt'></i><span
+                class="app-menu__label">Quản lý món ăn</span></a>
 
         </li>
     </ul>
@@ -71,7 +77,8 @@
 <main class="app-content" id="user">
     <div class="app-title">
         <ul class="app-breadcrumb breadcrumb side">
-            <li class="breadcrumb-item active"><a href="/adminFood?actionUser=searchOrder"><b>Danh sách Order</b></a></li>
+            <li class="breadcrumb-item active"><a href="/adminFood?actionUser=searchOrder"><b>Danh sách Order</b></a>
+            </li>
         </ul>
         <div id="clock"></div>
     </div>
@@ -83,8 +90,10 @@
                         <form class="form-group w-25" action="/adminFood" method="get">
                             <input type="hidden" name="actionUser" value="searchOrder">
                             <input type="text"
-                                   class="form-control" name="searchOrder" value="${searchOrder}">
-                            <input type="submit" value="Search" class="btn btn-secondary" id="" onclick="showSearchUser()">
+                                   class="form-control" name="searchOrder" value="${searchOrder}" style="width: 200px;
+                                   display: inline-block;">
+                            <input type="submit" value="Search" class="btn btn-secondary" id=""
+                                   onclick="showSearchUser()">
                         </form>
                     </div>
                     <table id="tableStudent" class="table table-hover table-striped table-bordered" style="width: 100%">
@@ -101,15 +110,16 @@
                         <c:forEach var="order" items="${orderList}" varStatus="stt">
                             <tr>
                                 <td>${stt.count}</td>
-                                <td>${order.user}</td>
                                 <td>${order.food}</td>
+                                <td>${order.user}</td>
                                 <td>${order.quantity}</td>
                                 <td>
                                     <button type="button" onclick="deleteUser('${order.id}')" class="btn btn-danger"
                                             data-toggle="modal" data-target="#exampleModal">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-                                    <a href="/adminFood?actionUser=edit&id=${order.id}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="/adminFood?actionUser=edit&id=${order.id}" class="btn btn-primary"><i
+                                            class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -170,7 +180,7 @@
                     <div class="form-group">
                         <label for="txtDm" class="control-label">Danh mục</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" name ="category">
+                            <input type="text" class="form-control" name="category">
                         </div>
                     </div>
                     <div class="form-group">
@@ -192,12 +202,6 @@
                             <input type="text" class="form-control" id="txtGia" name="description">
                         </div>
                     </div>
-                    <%--                    <div class="form-group">--%>
-                    <%--                        <label for="txtLoai" class="control-label col-xs-3">Loại đồ ăn</label>--%>
-                    <%--                        <div class="col-md-12">--%>
-                    <%--                            <input type="text" class="form-control" id="txtGia" name="category_name">--%>
-                    <%--                        </div>--%>
-                    <%--                    </div>--%>
                     <div class="modal-footer col-md-5 text-center">
                         <input type="submit" id="btnSave" class="btn btn-success btn-block" value="Lưu">
                         <button class="btn btn-cancel" data-dismiss="modal">Hủy bỏ</button>
@@ -225,6 +229,7 @@
     function deleteUser(id) {
         document.getElementById("deleteUserId").value = id;
     }
+
     $(document).ready(function () {
         $('#tableStudent').dataTable({
             "dom": 'ltrip',

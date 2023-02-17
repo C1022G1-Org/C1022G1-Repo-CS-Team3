@@ -24,6 +24,8 @@ public class AdminFoodServlet extends HttpServlet {
     IUserService userService = new UserService();
     IOrderService orderService = new OrderService();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         String actionUser = request.getParameter("actionUser");
         if (actionUser == null) {
             actionUser = "";
@@ -43,6 +45,8 @@ public class AdminFoodServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         String actionUser = request.getParameter("actionUser");
         if (actionUser == null) {
             actionUser = "";
@@ -103,6 +107,17 @@ public class AdminFoodServlet extends HttpServlet {
         food.setImgURL(imgURL);
         food.setDescription(description);
         food.setPrice(price);
+        switch (categoryName) {
+            case "đồ ăn":
+                categoryName = "1";
+                break;
+            case "đồ ăn nhanh":
+                categoryName = "2";
+                break;
+            case "nước uống":
+                categoryName = "3";
+                break;
+        }
         food.setCategoryName(categoryName);
         foodService.updateFood(food);
         try {
