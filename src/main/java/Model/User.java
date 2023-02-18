@@ -26,6 +26,22 @@ public class User {
         this.address = address;
     }
 
+    public User(String loginName, String loginPassword) {
+        this.loginName = loginName;
+        this.loginPassword = loginPassword;
+    }
+
+    public User(String name, String loginName, String loginPassword, String role, String dateOfBirth, String gender, String email, String address) {
+        this.name = name;
+        this.loginName = loginName;
+        this.loginPassword = loginPassword;
+        this.role = role;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = Integer.parseInt(gender);
+        this.email = email;
+        this.address = address;
+    }
+
     public int getId() {
         return id;
     }

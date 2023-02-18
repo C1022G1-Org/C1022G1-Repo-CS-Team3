@@ -151,10 +151,12 @@
                         Search
                     </button>
                 </form>
-                <div class="hide__on__mobile logout">Logout <i class="ti-shift-left"></i></div>
+                <div class="hide__on__mobile logout"><a href="/food?actionUser=login" class="text-decoration-none text-black-50">
+                    Logout</a> <i class="ti-shift-right"></i></div>
             </div>
             <div class="navbar-nav mt-4">
-                <div class="logout-responsive">Logout <i class="ti-shift-left"></i></div>
+                <div class="logout-responsive"><a href="/food?actionUser=login" class="text-decoration-none text-black-50">
+                    Logout</a> <i class="ti-shift-right"></i></div>
             </div>
         </div>
     </div>
