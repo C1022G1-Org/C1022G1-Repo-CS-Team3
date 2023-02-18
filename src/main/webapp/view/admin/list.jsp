@@ -41,7 +41,7 @@
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
         <!-- User Menu-->
-        <li><a class="app-nav__item" href="#"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+        <li><a class="app-nav__item" href="/food?actionUser=login"><i class='bx bx-log-out bx-rotate-180'></i> </a>
         </li>
     </ul>
 </header>

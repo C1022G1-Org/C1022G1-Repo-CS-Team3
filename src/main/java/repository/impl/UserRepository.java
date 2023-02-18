@@ -67,4 +67,46 @@ public class UserRepository implements IUserRepository {
         }
         return userList;
     }
+
+    @Override
+    public User checkLogin(String userName, String passWord) {
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = BaseRepository.getConnection()
+                    .prepareStatement("select user_login_name, user_login_password from users where user_login_name =? and user_login_password =?");
+            preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, passWord);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User user;
+            while (resultSet.next()) {
+                user = new User(resultSet.getString(1), resultSet.getString(2));
+                return user;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void addUser(User user) {
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = BaseRepository.getConnection().
+                    prepareStatement("insert into users (user_name, user_login_name, user_login_password, " +
+                            "user_role, date_of_birth, gender, email, address) values \n" +
+                            "(?, ?, ?, ?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getLoginName());
+            preparedStatement.setString(3, user.getloginPassword());
+            preparedStatement.setString(4, user.getRole());
+            preparedStatement.setString(5, user.getDateOfBirth());
+            preparedStatement.setInt(6, user.getGender());
+            preparedStatement.setString(7, user.getEmail());
+            preparedStatement.setString(8, user.getAddress());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

@@ -18,7 +18,17 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User checkLogin(String userName, String passWord) {
+        return userRepository.checkLogin(userName, passWord);
+    }
+
+    @Override
     public List<User> listAllUser() {
         return userRepository.listAllUser();
+    }
+
+    @Override
+    public void addUser(User user) {
+        userRepository.addUser(user);
     }
 }
