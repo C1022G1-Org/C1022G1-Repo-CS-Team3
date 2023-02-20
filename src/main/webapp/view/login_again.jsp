@@ -80,16 +80,14 @@
         <h2>Login</h2>
         <input type="text" class="username" name="username" id="" placeholder="username" />
         <input type="password" class="password" name="password" id="" placeholder="password" />
-        <h2 style="color: red; margin-top: 0">
-            Bạn chưa có tài khoản <br>
-            Hãy Đăng ký tài khoản
-        </h2>
+        <div class="alert alert-danger" role="alert">
+            Không đúng mật khẩu hoặc sai tên tài khoản? Vui lòng nhập lại!
+        </div>
         <input type="submit" class="submit" value="Đăng nhập">
         <hr>
         <a href="/food?actionUser=register" style="background-color: Blue;">Đăng ký</a>
     </div>
 </form>
-
 <script src="../js/bootstrap.js.map"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 package repository.impl;
 
 import Model.Order;
-import Model.User;
 import repository.IOrderRepository;
 
 import java.sql.PreparedStatement;
