@@ -16,6 +16,13 @@ public class Order {
         this.quantity = quantity;
     }
 
+    public Order(String food, String user, int quantity) {
+        this.user = user;
+        this.food = food;
+        this.quantity = quantity;
+    }
+
+
     public int getId() {
         return id;
     }

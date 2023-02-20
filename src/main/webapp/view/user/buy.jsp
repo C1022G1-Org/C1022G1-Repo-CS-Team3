@@ -19,40 +19,40 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<table >
-    <thead>
-    <tr>
-        <th><img src="${food.imgURL}" width="300px" alt=""></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th>Tên thức ăn: </th>
-        <td>${food.name}</td>
-    </tr>
-    <tr>
-        <th>Giá: </th>
-        <td>${food.price}đ</td>
-    </tr>
-    <tr>
-        <th>Mô tả: </th>
-        <td>${food.description}</td>
-    </tr>
-    <tr>
-        <th>Danh mục: </th>
-        <td>${food.categoryName}</td>
-    </tr>
-    <tr>
-        <th>Số lượng: </th>
-        <td><input type="number" name="" id=""></td>
-    </tr>
-    <tr>
-        <td><input type="submit" value="Mua" class="btn btn-secondary"></td>
-    </tr>
-    </tbody>
-</table>
+<form action="/food?actionUser=login" method="post">
+    <div class="card w-25">
+        <input type="hidden" name="username" value="${loginName}">
+        <input type="hidden" name="password" value="${loginPass}">
+        <img class="card-img-top" src="${food.imgURL}" alt="">
+        <div class="card-body">
+            <input type="hidden" name="foodName" value="${food.name}">
+            <input type="hidden" name="userName" value="${user.name}">
+            <h4 class="card-title">${food.name}</h4>
+            <p class="card-text">${food.description} </p>
+            <p class="card-text">Hạng mục: ${food.categoryName}</p>
+            <input type="hidden" name="" value="${food.price}" id="price">
+            <p class="card-text">Giá: ${food.price}đ</p>
+            <p>
+                Số lượng:&nbsp <input type="number" name="quantity" id="quantity" style="width: 40px;" onclick="showTotalMoney()">
+            </p>
+            <p >
+                Tổng tiền: <span id="result"></span>
+            </p>
+        </div>
+    </div>
+    <input type="submit" value="Mua" class="btn btn-secondary">
+</form>
+
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script>
+    function showTotalMoney() {
+        let price = document.getElementById("price").value;
+        let quantity = document.getElementById("quantity").value;
+        document.getElementById("result").innerHTML =  price * quantity + " đ";
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

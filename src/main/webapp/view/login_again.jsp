@@ -11,7 +11,6 @@
 <head>
     <title>Bài Tập</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./stylesheet.css" />
     <link rel="stylesheet" href="../themify-icons/themify-icons.css" />
     <link rel="stylesheet" href="../css/bootstrap.css" />
     <style>
@@ -21,9 +20,17 @@
             box-sizing: border-box;
         }
 
+        body {
+            background: url('../img/bg.jpg') top center / cover no-repeat;
+        }
+
+        form {
+            margin-top: 24px;
+        }
+
         .login  {
             width: 500px;
-            height: 400px;
+            height: 450px;
             border: 1px solid gray;
             border-radius: 10px;
             text-align: center;
@@ -31,7 +38,7 @@
         }
 
         .login h2 {
-            margin-top: 70px;
+            margin-top: 30px;
             color: #868787;
             font-family: sans-serif;
         }
@@ -49,7 +56,7 @@
         .login .submit,
         .login a {
             display: inline-block;
-            width: 200px;
+            width: 400px;
             height: 40px;
             margin-bottom: 10px;
             border-radius: 5px;
@@ -78,7 +85,8 @@
             Hãy Đăng ký tài khoản
         </h2>
         <input type="submit" class="submit" value="Đăng nhập">
-        <a href="/food?actionUser=register" >Đăng ký</a>
+        <hr>
+        <a href="/food?actionUser=register" style="background-color: Blue;">Đăng ký</a>
     </div>
 </form>
 

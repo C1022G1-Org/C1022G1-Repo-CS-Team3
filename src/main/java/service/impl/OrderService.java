@@ -16,4 +16,19 @@ public class OrderService implements IOrderService {
         }
         return orderRepository.listByName(search);
     }
+
+    @Override
+    public int findIdByFoodName(String foodName) {
+        return orderRepository.findIdByFoodName(foodName);
+    }
+
+    @Override
+    public int findIdByUserName(String userName) {
+        return orderRepository.findIdByUserName(userName);
+    }
+
+    @Override
+    public void addOrder(Order order) {
+        orderRepository.addOrder (order);
+    }
 }
