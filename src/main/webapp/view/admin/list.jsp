@@ -57,13 +57,17 @@
     </div>
     <hr>
     <ul class="app-menu">
-        <li><a href="/adminFood?actionUser=search" class="app-menu__item active" type="button" ><i class='app-menu__icon bx bx-user-voice'></i><span
+        <li><a href="/adminFood?actionUser=search" class="app-menu__item active" type="button"><i
+                class='app-menu__icon bx bx-user-voice'></i><span
                 class="app-menu__label">Quản lý khách hàng</span></a></li>
-        <li><a href="/adminFood?actionUser=searchOrder" class="app-menu__item active" type="button" ><i class='ti-list' style="    display: inline-block;
+        <li><a href="/adminFood?actionUser=searchOrder" class="app-menu__item active" type="button"><i class='ti-list'
+                                                                                                       style="    display: inline-block;
     width: 38px;"></i><span
                 class="app-menu__label">Quản lý đơn hàng</span></a></li>
-        <li><button class="app-menu__item active" type="button"><i
-                class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý món ăn</span></button>
+        <li>
+            <button class="app-menu__item active" type="button"><i
+                    class='app-menu__icon bx bx-purchase-tag-alt'></i><span
+                    class="app-menu__label">Quản lý món ăn</span></button>
         </li>
     </ul>
 </aside>
@@ -80,12 +84,11 @@
                 <div class="tile-body">
                     <div class="row element-button">
                         <div class="col-sm-2">
-
                             <a class="btn btn-add btn-sm" href="#" id="them" title="Thêm" data-toggle="modal"
                                data-target="#addfood"><i class="fas fa-plus"></i>
                                 Tạo mới món ăn</a>
                         </div>
-                        <form class="form-group w-25" action="/adminFood" >
+                        <form class="form-group w-25" action="/adminFood">
                             <input type="text"
                                    class="form-control" name="search" value="${search}" style="width: 200px;
                                    display: inline-block">
@@ -114,11 +117,13 @@
                                 <td>${food.price}</td>
                                 <td>${food.categoryName}</td>
                                 <td>
-                                    <button type="button" onclick="deleteInfo('${food.id}','${food.name}')" class="btn btn-danger"
+                                    <button type="button" onclick="deleteInfo('${food.id}','${food.name}')"
+                                            class="btn btn-danger"
                                             data-toggle="modal" data-target="#exampleModal">
                                         <i class="fas fa-trash-alt"></i>
                                     </button>
-                                    <a href="/adminFood?actionUser=edit&id=${food.id}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                    <a href="/adminFood?actionUser=edit&id=${food.id}" class="btn btn-primary"><i
+                                            class="fas fa-edit"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -179,7 +184,7 @@
                     <div class="form-group">
                         <label for="txtDm" class="control-label">Danh mục</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" name ="category">
+                            <input type="text" class="form-control" name="category">
                         </div>
                     </div>
                     <div class="form-group">
@@ -210,41 +215,42 @@
         </div>
     </div>
 </div>
-    <script src="../../jquery/jquery-3.5.1.min.js"></script>
-    <script src="../../datatables/js/jquery.dataTables.min.js"></script>
-    <script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
-    <script src="../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../js/popper.min.js"></script>
-    <script src="../../js/bootstrap.min.js"></script>
-    <script src="../../js/main.js"></script>
-    <script src="../../js/plugins/pace.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-    <script type="text/javascript" src="../../js/addfood.js"></script>
-    <script>
-        function deleteInfo(id) {
-            document.getElementById("deleteId").value = id;
-        }
+<script src="../../jquery/jquery-3.5.1.min.js"></script>
+<script src="../../datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../datatables/js/dataTables.bootstrap5.min.js"></script>
+<script src="../../js/jquery-3.2.1.min.js"></script>
+<script src="../../js/popper.min.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/main.js"></script>
+<script src="../../js/plugins/pace.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+<script type="text/javascript" src="../../js/addfood.js"></script>
+<script>
+    function deleteInfo(id) {
+        document.getElementById("deleteId").value = id;
+    }
 
-        function deleteUser(id) {
-            document.getElementById("deleteUserId").value = id;
-        }
-        $(document).ready(function () {
-            $('#tableStudent').dataTable({
-                "dom": 'ltrip',
-                "lengthChange": false,
-                "pageLength": 5
-            });
+    function deleteUser(id) {
+        document.getElementById("deleteUserId").value = id;
+    }
+
+    $(document).ready(function () {
+        $('#tableStudent').dataTable({
+            "dom": 'ltrip',
+            "lengthChange": false,
+            "pageLength": 5
         });
-        function showFoodTable() {
-            document.getElementById('food').style.display = 'block'
-            document.getElementById('user').style.display = 'none'
-        }
+    });
 
-        function showUserTable() {
-            document.getElementById('food').style.display = 'none'
-            document.getElementById('user').style.display = 'block'
-        }
-    </script>
+    function showFoodTable() {
+        document.getElementById('food').style.display = 'block'
+        document.getElementById('user').style.display = 'none'
+    }
+
+    function showUserTable() {
+        document.getElementById('food').style.display = 'none'
+        document.getElementById('user').style.display = 'block'
+    }
+</script>
 </body>
-
 </html>

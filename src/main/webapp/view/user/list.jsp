@@ -180,13 +180,13 @@
                     </button>
                 </form>
                 <div class="navbar-nav">
-                    <c:if test="${usName == null}">
+                    <c:if test="${sessionScope.us == null}">
                         <div class="hide__on__mobile logout"><a href="/food?actionUser=login"
                                                                 class="text-decoration-none text-black-50">
                             Login</a> <i class="ti-shift-left"></i></div>
                     </c:if>
-                    <c:if test="${usName != null}">
-                        <span class="hide__on__mobile logout bg-warning"> <i class="ti-user"></i> ${usName}</span>
+                    <c:if test="${sessionScope.us != null}">
+                        <span class="hide__on__mobile logout bg-warning"> <i class="ti-user"></i> ${sessionScope.us}</span>
                         <div class="hide__on__mobile logout">
                             <a href="/food" class="text-decoration-none text-warning">
                             Logout</a> <i class="ti-shift-right"></i></div>
@@ -194,13 +194,13 @@
                 </div>
             </div>
             <div class="navbar-nav mt-4">
-                <c:if test="${usName == null} ">
+                <c:if test="${sessionScope.us == null} ">
                     <div class="logout-responsive"><a href="/food?actionUser=login"
                                                       class="text-decoration-none text-black-50">
                         Login</a> <i class="ti-shift-left"></i></div>
                 </c:if>
-                <c:if test="${usName != null}">
-                    <span class="logout-responsive bg-warning"><i class="ti-user"></i> ${usName}</span>
+                <c:if test="${sessionScope.us != null}">
+                    <span class="logout-responsive bg-warning"><i class="ti-user"></i> ${sessionScope.us}</span>
                     <div class="logout-responsive"><a href="/food"
                                                       class="text-decoration-none text-warning">
                         Logout</a> <i class="ti-shift-right"></i></div>
