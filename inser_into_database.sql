@@ -50,3 +50,12 @@ select food_id from food where food_name = ?;
 select user_id from users where user_name = ?;
 insert into `order` (user_id, food_id, quantity) values (?,?,?);
 select user_id, user_name, user_login_name, user_login_password, user_role, date_of_birth, gender, email, address from users where user_id = ?;
+
+select o.order_id, u.user_name, f.food_name, o.quantity 
+from `order`o 
+inner join food f on o.food_id = f.food_id 
+inner join users u on o.user_id = u.user_id 
+where f.food_name like concat ('%', ? , '%') 
+and o.quantity > 0
+limit 6;
+

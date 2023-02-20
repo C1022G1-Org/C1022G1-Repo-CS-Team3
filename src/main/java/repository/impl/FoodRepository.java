@@ -21,7 +21,7 @@ public class FoodRepository implements IFoodRepository {
                             "fc.food_category_name \n" +
                             "from food f \n" +
                             "inner join food_category fc on fc.food_category_id = f.food_category_id \n" +
-                            "where food_name like concat ('%', ? , '%') limit 6");
+                            "where food_name like concat ('%', ? , '%') limit 8");
             preparedStatement.setString(1, search);
             ResultSet resultSet = preparedStatement.executeQuery();
             Food food;

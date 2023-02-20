@@ -30,7 +30,7 @@ public class OrderRepository implements IOrderRepository {
                 order.setUser(resultSet.getString("u.user_name"));
                 order.setFood(resultSet.getString("f.food_name"));
                 order.setQuantity(resultSet.getInt("o.quantity"));
-                orderList.add(order);
+
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -80,7 +80,10 @@ public class OrderRepository implements IOrderRepository {
             int userId = findIdByUserName(order.getUser());
             preparedStatement.setInt(1, userId);
             preparedStatement.setInt(2, foodId);
-            preparedStatement.setInt(3, order.getQuantity());
+            if (order.getQuantity() > 0) {
+                preparedStatement.setInt(3, order.getQuantity());
+            }
+
             preparedStatement.executeUpdate();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
