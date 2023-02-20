@@ -20,6 +20,8 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css_tu/bootstrap.css">
     <link rel="stylesheet" href="../../themify-icons/themify-icons.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%--    <link rel="stylesheet" href="index_css.css">--%>
     <style>
         * {
@@ -58,6 +60,13 @@
             align-items: center;
             justify-content: space-between;
             gap: 16px;
+        }
+
+        .card-title{
+            text-aglin:center;
+            display: flex;
+            justify-content: center;
+            color:red;
         }
 
         .logout,
@@ -100,14 +109,14 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: lightblue !important;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="background-color: lightblue !important;">
     <div class="container-fluid">
-        <form action="/food?actionUser=login" method="post">
-            <input type="hidden" name="username" value="${usName}">
-            <input type="hidden" name="password" value="${pW}">
-            <input type="submit" class="navbar-brand border-0 bg-transparent" value="TDQ">
-        </form>
-
+<%--        <form action="/food?actionUser=login" method="post">--%>
+<%--            <input type="hidden" name="username" value="${usName}">--%>
+<%--            <input type="hidden" name="password" value="${pW}">--%>
+<%--            <input type="submit" class="navbar-brand border-0 bg-transparent" value="TDQ">--%>
+<%--        </form>--%>
+        <a href="/food" class="navbar-brand">TDQ</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -124,45 +133,37 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <form class="dropdown-item" action="/food?actionUser=login" method="post">
-                                <input type="hidden" name="username" value="${usName}">
-                                <input type="hidden" name="password" value="${pW}">
-                                <input type="hidden" name="listBeverage" id="listBeverage">
-                                <input type="submit" value="Nước uống" class="border-0 bg-transparent" onclick="addBeverageValue()">
-                            </form>
+<%--                            <form class="dropdown-item" action="/food?actionUser=login" method="post">--%>
+<%--                                <input type="hidden" name="username" value="${usName}">--%>
+<%--                                <input type="hidden" name="password" value="${pW}">--%>
+<%--                                <input type="hidden" name="listBeverage" id="listBeverage">--%>
+<%--                                <input type="submit" value="Nước uống" class="border-0 bg-transparent" onclick="addBeverageValue()">--%>
+<%--                            </form>--%>
+                            <a href="/food?actionUser=beveragelist" class="dropdown-item" >Đồ uống</a>
                         </li>
                         <li>
-                            <form class="dropdown-item" action="/food?actionUser=login" method="post">
-                                <input type="hidden" name="username" value="${usName}">
-                                <input type="hidden" name="password" value="${pW}">
-                                <input type="hidden" name="listFood" id="listFood" >
-                                <input type="submit" value="Đồ ăn" class="border-0 bg-transparent" onclick="addFoodValue()">
-                            </form>
+<%--                            <form class="dropdown-item" action="/food?actionUser=login" method="post">--%>
+<%--                                <input type="hidden" name="username" value="${usName}">--%>
+<%--                                <input type="hidden" name="password" value="${pW}">--%>
+<%--                                <input type="hidden" name="listFood" id="listFood" >--%>
+<%--                                <input type="submit" value="Đồ ăn" class="border-0 bg-transparent" onclick="addFoodValue()">--%>
+<%--                            </form>--%>
+                            <a href="/food?actionUser=foodlist" class="dropdown-item" >Đồ ăn</a>
                         </li>
                         <li>
-                            <form class="dropdown-item" action="/food?actionUser=login" method="post">
-                                <input type="hidden" name="username" value="${usName}">
-                                <input type="hidden" name="password" value="${pW}">
-                                <input type="hidden" name="listFastFood" id="listFastFood">
-                                <input type="submit" value="Đồ ăn nhanh" class="border-0 bg-transparent" onclick="addFastFoodValue()">
-                            </form>
+<%--                            <form class="dropdown-item" action="/food?actionUser=login" method="post">--%>
+<%--                                <input type="hidden" name="username" value="${usName}">--%>
+<%--                                <input type="hidden" name="password" value="${pW}">--%>
+<%--                                <input type="hidden" name="listFastFood" id="listFastFood">--%>
+<%--                                <input type="submit" value="Đồ ăn nhanh" class="border-0 bg-transparent" onclick="addFastFoodValue()">--%>
+<%--                            </form>--%>
+                            <a href="/food?actionUser=fastfoodlist" class="dropdown-item" >Đồ ăn nhanh</a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link actio" href="#">Giới Thiệu</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link action" href="#">Tin Tức</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link action" href="#">Liên Hệ</a>
-                </li>
             </ul>
             <div class="action nav-item">
-                <form method="post" class="d-flex" role="search" action="/food?actionUser=login">
-                    <input type="hidden" name="username" value="${usName}">
-                    <input type="hidden" name="password" value="${pW}">
+                <form method="get" class="d-flex" role="search" action="/food">
                     <input
                             class="form-control me-2"
                             type="search"
@@ -170,7 +171,6 @@
                             aria-label="Search"
                             name="search"
                             value="${search}"
-                            onclick="removeValue()"
                     />
                     <button class="btn btn-outline-success" type="submit">
                         Search
@@ -180,32 +180,34 @@
                     <c:if test="${sessionScope.us == null}">
                         <div class="hide__on__mobile logout"><a href="/food?actionUser=login"
                                                                 class="text-decoration-none text-black-50">
-                            Login</a> <i class="ti-shift-left"></i></div>
+                            <i class="fa fa-sign-out" aria-hidden="true" style="font-size: 24px;"></i></a></div>
                     </c:if>
                     <c:if test="${sessionScope.us != null}">
                         <span class="hide__on__mobile logout bg-warning"> <i class="ti-user"></i> ${sessionScope.us}</span>
                         <div class="hide__on__mobile logout">
-                            <a href="/login" class="text-decoration-none text-warning">
-                            Logout</a> <i class="ti-shift-right"></i></div>
+                            <a href="/food?actionUser=logout" class="text-decoration-none text-warning">
+                                <i class="fa fa-sign-in" aria-hidden="true" style="font-size: 24px;"></i></a></div>
                     </c:if>
                 </div>
             </div>
             <div class="navbar-nav mt-4">
                 <c:if test="${sessionScope.us == null} ">
-                    <div class="logout-responsive"><a href="/food?actionUser=login"
+                    <div class="logout-responsive"><a href="/food?actionUser=logout"
                                                       class="text-decoration-none text-black-50">
-                        Login</a> <i class="ti-shift-left"></i></div>
+                        <i class="fa fa-sign-out" aria-hidden="true" style="font-size: 24px;"></i></a></div>
                 </c:if>
                 <c:if test="${sessionScope.us != null}">
                     <span class="logout-responsive bg-warning"><i class="ti-user"></i> ${sessionScope.us}</span>
                     <div class="logout-responsive"><a href="/food"
                                                       class="text-decoration-none text-warning">
-                        Logout</a> <i class="ti-shift-right"></i></div>
+                        <i class="fa fa-sign-in" aria-hidden="true" style="font-size: 24px;"></i></a> </div>
                 </c:if>
             </div>
         </div>
     </div>
 </nav>
+
+<div class="col-md-12 banner"><img src="../../img/banner.jpg" width="100%" height="458px" style="margin-top: 56px;">  </div>
 
 <div id="content" class="container-fluid p-5">
     <div class="content-header mb-5 text-center">
@@ -213,108 +215,108 @@
     </div>
     <div class="row g-4">
         <c:forEach var="food" items="${foodList}" varStatus="stt">
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card" style="width: 100%">
-                    <img height="320px" src="${food.imgURL}" class="card-img-top" alt="..."/>
+                    <img height="250px" src="${food.imgURL}" class="card-img-top" alt="..."/>
                     <div class="card-body">
-                        <h5 class="card-title">${food.name}</h5>
+                        <h5 class="card-title" style="text-transform: capitalize">${food.name}</h5>
                         <p class="card-text">
                                 ${food.description}
                         </p>
                         <p>
-                            Giá: ${food.price} đ
+                            <i class="fa fa-money" style="color:#ff0000"></i> &nbsp${food.price} đ
                         </p>
-<%--                        <a href="/food?actionUser=buy&id=${food.id}&userId=${sessionScope.userId}"--%>
-<%--                           class="btn btn-primary">Chọn</a>--%>
-                        <form action="/food" method="get">
-                            <input type="hidden" name="actionUser" value="buy">
-                            <input type="hidden" name="username" value="${usName}">
-                            <input type="hidden" name="password" value="${pW}">
-                            <input type="hidden" name="id" value="${food.id}">
-                            <input type="hidden" name="userId" value="${sessionScope.userId}">
-                            <input type="submit" value="Chọn" class="btn btn-primary">
-                        </form>
+                        <a style="width: 86px" href="/food?actionUser=buy&id=${food.id}&userId=${sessionScope.userId}"
+                           class="btn btn-primary">Chọn</a>
+<%--                        <form action="/food" method="get">--%>
+<%--                            <input type="hidden" name="actionUser" value="buy">--%>
+<%--                            <input type="hidden" name="username" value="${usName}">--%>
+<%--                            <input type="hidden" name="password" value="${pW}">--%>
+<%--                            <input type="hidden" name="id" value="${food.id}">--%>
+<%--                            <input type="hidden" name="userId" value="${sessionScope.userId}">--%>
+<%--                            <input type="submit" value="Chọn" class="btn btn-primary">--%>
+<%--                        </form>--%>
                     </div>
                 </div>
             </div>
         </c:forEach>
 
         <c:forEach var="food1" items="${foodList1}" varStatus="stt">
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card" style="width: 100%">
-                    <img height="320px" src="${food1.imgURL}" class="card-img-top" alt="..."/>
+                    <img height="250px" src="${food1.imgURL}" class="card-img-top" alt="..."/>
                     <div class="card-body">
-                        <h5 class="card-title">${food1.name}</h5>
+                        <h5 class="card-title" style="text-transform: capitalize">${food1.name}</h5>
                         <p class="card-text">
                                 ${food1.description}
                         </p>
                         <p>
-                            Giá: ${food1.price} đ
+                            <i class="fa fa-money" style="color:#ff0000"></i> &nbsp${food.price} đ
                         </p>
-<%--                        <a href="/food?actionUser=buy&id=${food1.id}&userId=${sessionScope.userId}"--%>
-<%--                           class="btn btn-primary">Chọn</a>--%>
-                        <form action="/food" method="get">
-                            <input type="hidden" name="actionUser" value="buy">
-                            <input type="hidden" name="username" value="${usName}">
-                            <input type="hidden" name="password" value="${pW}">
-                            <input type="hidden" name="id" value="${food.id}">
-                            <input type="hidden" name="userId" value="${sessionScope.userId}">
-                            <input type="submit" value="Chọn" class="btn btn-primary">
-                        </form>
+                        <a style="width: 86px" href="/food?actionUser=buy&id=${food1.id}&userId=${sessionScope.userId}"
+                           class="btn btn-primary">Chọn</a>
+<%--                        <form action="/food" method="get">--%>
+<%--                            <input type="hidden" name="actionUser" value="buy">--%>
+<%--                            <input type="hidden" name="username" value="${usName}">--%>
+<%--                            <input type="hidden" name="password" value="${pW}">--%>
+<%--                            <input type="hidden" name="id" value="${food.id}">--%>
+<%--                            <input type="hidden" name="userId" value="${sessionScope.userId}">--%>
+<%--                            <input type="submit" value="Chọn" class="btn btn-primary">--%>
+<%--                        </form>--%>
                     </div>
                 </div>
             </div>
         </c:forEach>
 
         <c:forEach var="food2" items="${foodList2}" varStatus="stt">
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card" style="width: 100%">
-                    <img height="320px" src="${food2.imgURL}" class="card-img-top" alt="..."/>
+                    <img height="250px" src="${food2.imgURL}" class="card-img-top" alt="..."/>
                     <div class="card-body">
-                        <h5 class="card-title">${food2.name}</h5>
+                        <h5 class="card-title" style="text-transform: capitalize">${food2.name}</h5>
                         <p class="card-text">
                                 ${food2.description}
                         </p>
                         <p>
-                            Giá: ${food2.price} đ
+                            <i class="fa fa-money" style="color:#ff0000"></i> &nbsp${food.price} đ
                         </p>
-<%--                        <a href="/food?actionUser=buy&id=${food2.id}&userId=${sessionScope.userId}"--%>
-<%--                           class="btn btn-primary">Chọn</a>--%>
-                        <form action="/food" method="get">
-                            <input type="hidden" name="actionUser" value="buy">
-                            <input type="hidden" name="username" value="${usName}">
-                            <input type="hidden" name="password" value="${pW}">
-                            <input type="hidden" name="id" value="${food.id}">
-                            <input type="hidden" name="userId" value="${sessionScope.userId}">
-                            <input type="submit" value="Chọn" class="btn btn-primary">
-                        </form>
+                        <a style="width: 86px" href="/food?actionUser=buy&id=${food2.id}&userId=${sessionScope.userId}"
+                           class="btn btn-primary">Chọn</a>
+<%--                        <form action="/food" method="get">--%>
+<%--                            <input type="hidden" name="actionUser" value="buy">--%>
+<%--                            <input type="hidden" name="username" value="${usName}">--%>
+<%--                            <input type="hidden" name="password" value="${pW}">--%>
+<%--                            <input type="hidden" name="id" value="${food.id}">--%>
+<%--                            <input type="hidden" name="userId" value="${sessionScope.userId}">--%>
+<%--                            <input type="submit" value="Chọn" class="btn btn-primary">--%>
+<%--                        </form>--%>
                     </div>
                 </div>
             </div>
         </c:forEach>
 
         <c:forEach var="food3" items="${foodList3}" varStatus="stt">
-            <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="col-lg-3 col-md-6 col-sm-12">
                 <div class="card" style="width: 100%">
-                    <img height="320px" src="${food3.imgURL}" class="card-img-top" alt="..."/>
+                    <img height="250px" src="${food3.imgURL}" class="card-img-top" alt="..."/>
                     <div class="card-body">
-                        <h5 class="card-title">${food3.name}</h5>
+                        <h5 class="card-title" style="text-transform: capitalize">${food3.name}</h5>
                         <p class="card-text">
                                 ${food3.description}
                         </p>
                         <p>
                             Giá: ${food3.price} đ
                         </p>
-<%--                        <a href="/food?actionUser=buy&id=${food3.id}&userId=${sessionScope.userId}"--%>
-<%--                           class="btn btn-primary">Chọn</a>--%>
-                        <form action="/food" method="get">
-                            <input type="hidden" name="actionUser" value="buy">
-                            <input type="hidden" name="username" value="${usName}">
-                            <input type="hidden" name="password" value="${pW}">
-                            <input type="hidden" name="id" value="${food.id}">
-                            <input type="hidden" name="userId" value="${sessionScope.userId}">
-                            <input type="submit" value="Chọn" class="btn btn-primary">
-                        </form>
+                        <a style="width: 86px;" href="/food?actionUser=buy&id=${food3.id}&userId=${sessionScope.userId}"
+                           class="btn btn-primary">Chọn</a>
+<%--                        <form action="/food" method="get">--%>
+<%--                            <input type="hidden" name="actionUser" value="buy">--%>
+<%--                            <input type="hidden" name="username" value="${usName}">--%>
+<%--                            <input type="hidden" name="password" value="${pW}">--%>
+<%--                            <input type="hidden" name="id" value="${food.id}">--%>
+<%--                            <input type="hidden" name="userId" value="${sessionScope.userId}">--%>
+<%--                            <input type="submit" value="Chọn" class="btn btn-primary">--%>
+<%--                        </form>--%>
                     </div>
                 </div>
             </div>

@@ -59,17 +59,20 @@ public class UserFoodServlet extends HttpServlet {
             actionUser = "";
         }
         switch (actionUser) {
-//            case "foodlist":
-//                showFoodList(request, response);
-//                break;
-//            case "fastfoodlist":
-//                showFastFoodList(request, response);
-//                break;
-//            case "beveragelist":
-//                showBeverageList(request, response);
-//                break;
+            case "foodlist":
+                showFoodList(request, response);
+                break;
+            case "fastfoodlist":
+                showFastFoodList(request, response);
+                break;
+            case "beveragelist":
+                showBeverageList(request, response);
+                break;
             case "login":
                 showLoginForm(request, response);
+                break;
+            case "logout":
+                performLogout (request, response);
                 break;
             case "buy":
                 showBuyForm(request, response);
@@ -84,6 +87,16 @@ public class UserFoodServlet extends HttpServlet {
 
     }
 
+    private void performLogout(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        session.removeAttribute("us");
+        try {
+            response.sendRedirect("/view/user/list.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void addOrder(HttpServletRequest request, HttpServletResponse response) {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         String foodName = request.getParameter("foodName");
@@ -91,7 +104,7 @@ public class UserFoodServlet extends HttpServlet {
         Order order = new Order(foodName, userName, quantity);
         orderService.addOrder(order);
         try {
-            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
+            request.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
@@ -143,7 +156,7 @@ public class UserFoodServlet extends HttpServlet {
         request.setAttribute("food", food);
         request.setAttribute("user", user);
         try {
-            request.getRequestDispatcher("/view/user/buy.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/user/buy2.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
@@ -196,18 +209,10 @@ public class UserFoodServlet extends HttpServlet {
             foodList2 = foodService.listFastFood();
         }
 
-//        List đồ uống
-        if (listBeverage == null) {
-            foodList3 = foodList4;
-        } else if (listBeverage.equals("listBeverage")) {
-            foodList3 = foodService.ListBeverage();
-        }
-
-        request.setAttribute("search", search);
-        request.setAttribute("foodList", foodList);
-        request.setAttribute("foodList1", foodList1);
-        request.setAttribute("foodList2", foodList2);
-        request.setAttribute("foodList3", foodList3);
+//        String search = request.getParameter("search");
+//        List<Food> foodList = foodService.listByName(search);
+//        request.setAttribute("search", search);
+//        request.setAttribute("foodList", foodList);
 
 //        Đăng nhập
         String userName = request.getParameter("username");
@@ -251,9 +256,9 @@ public class UserFoodServlet extends HttpServlet {
                         }
                     }
                 }
-                userCookie.setMaxAge(60);
-                passWordCookie.setMaxAge(60);
-                request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
+                userCookie.setMaxAge(60*60);
+                passWordCookie.setMaxAge(60*60);
+                request.getRequestDispatcher("index.jsp").forward(request, response);
             } catch (ServletException | IOException e) {
                 e.printStackTrace();
             }
@@ -272,33 +277,33 @@ public class UserFoodServlet extends HttpServlet {
         }
     }
 
-//    private void showBeverageList(HttpServletRequest request, HttpServletResponse response) {
-//        List<Food> foodList = foodService.ListBeverage();
-//        request.setAttribute("foodList", foodList);
-//        try {
-//            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
-//        } catch (ServletException | IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void showBeverageList(HttpServletRequest request, HttpServletResponse response) {
+        List<Food> foodList = foodService.ListBeverage();
+        request.setAttribute("foodList", foodList);
+        try {
+            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-//    private void showFastFoodList(HttpServletRequest request, HttpServletResponse response) {
-//        List<Food> foodList = foodService.listFastFood();
-//        request.setAttribute("foodList", foodList);
-//        try {
-//            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
-//        } catch (ServletException | IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void showFastFoodList(HttpServletRequest request, HttpServletResponse response) {
+        List<Food> foodList = foodService.listFastFood();
+        request.setAttribute("foodList", foodList);
+        try {
+            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-//    private void showFoodList(HttpServletRequest request, HttpServletResponse response) {
-//        List<Food> foodList = foodService.listFood();
-//        request.setAttribute("foodList", foodList);
-//        try {
-//            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
-//        } catch (ServletException | IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    private void showFoodList(HttpServletRequest request, HttpServletResponse response) {
+        List<Food> foodList = foodService.listFood();
+        request.setAttribute("foodList", foodList);
+        try {
+            request.getRequestDispatcher("/view/user/list.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

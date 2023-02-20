@@ -30,7 +30,11 @@
     <link rel="stylesheet" href="../../bootstrap520/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../datatables/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="../../themify-icons/themify-icons.css">
-
+    <style>
+        .food-name {
+            text-transform: capitalize;
+        }
+    </style>
 </head>
 
 <body onload="time()" class="app sidebar-mini rtl">
@@ -111,7 +115,7 @@
                         <c:forEach var="food" items="${foodList}" varStatus="stt">
                             <tr>
                                 <td>${stt.count}</td>
-                                <td>${food.name}</td>
+                                <td class="food-name">${food.name}</td>
                                 <td><img src="${food.imgURL}" alt="" width="100px;"></td>
                                 <td>${food.description}</td>
                                 <td>${food.price}</td>
@@ -184,7 +188,12 @@
                     <div class="form-group">
                         <label for="txtDm" class="control-label">Danh mục</label>
                         <div class="col-md-12">
-                            <input type="text" class="form-control" name="category">
+                            <select class="form-control" id="dmup" name="category">
+                                <option>-- Chọn danh mục --</option>
+                                <option value="đồ ăn">Đồ ăn</option>
+                                <option value="đồ ăn nhanh">Đồ ăn nhanh</option>
+                                <option value="nước uống">Nước uống</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -194,7 +203,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtGia" class="control-label col-xs-3">Giá bán</label>
+                        <label for="txtGia" class="control-label col-xs-3">Giá bán (vnđ)</label>
                         <div class="col-md-12">
                             <input type="text" class="form-control" id="txtGia" name="price">
                         </div>
@@ -206,9 +215,9 @@
                             <input type="text" class="form-control" id="txtGia" name="description">
                         </div>
                     </div>
-                    <div class="modal-footer col-md-5 text-center">
-                        <input type="submit" id="btnSave" class="btn btn-success btn-block" value="Lưu">
-                        <button class="btn btn-cancel" data-dismiss="modal">Hủy bỏ</button>
+                    <div style="border: 0" class="modal-footer col-md-5 text-center">
+                        <input type="submit" id="btnSave" class="btn btn-success" value="Lưu">
+                        <button class="btn btn-danger" data-dismiss="modal">Hủy bỏ</button>
                     </div>
                 </form>
             </div>

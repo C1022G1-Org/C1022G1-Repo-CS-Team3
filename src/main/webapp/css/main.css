@@ -5759,7 +5759,6 @@ button.close {
   pointer-events: auto;
   background-color: #FFF;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.3rem;
   outline: 0;
 }
@@ -5803,7 +5802,6 @@ button.close {
 
 .modal-title {
   margin-bottom: 0;
-  line-height: 1.5;
 }
 
 .modal-body {
@@ -5824,12 +5822,6 @@ button.close {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
-  padding: 1rem;
-  border-radius: .357rem;
-}
-
-.modal-footer > :not(:first-child) {
-  margin-left: .25rem;
 }
 
 .modal-footer > :not(:last-child) {
@@ -15603,7 +15595,6 @@ text-align:center;
   background-color: #fefefe;
   margin: auto;
   padding: 0;
-  border: 1px solid #888;
   margin-top: 0px;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
@@ -15657,7 +15648,6 @@ text-align:center;
 .modal-body {padding: 2px 16px;}
 
 .modal-footer {
-  padding: 5px 16px;
   background-color: white;
   color: white;
 }
