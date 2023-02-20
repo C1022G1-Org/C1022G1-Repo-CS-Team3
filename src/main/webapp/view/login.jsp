@@ -10,9 +10,9 @@
 <html lang="en">
 <head>
     <title>Bài Tập</title>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="../themify-icons/themify-icons.css" />
-    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="../themify-icons/themify-icons.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
     <style>
         * {
             margin: 0;
@@ -28,7 +28,7 @@
             margin-top: 24px;
         }
 
-        .login  {
+        .login {
             width: 500px;
             height: 400px;
             border: 1px solid gray;
@@ -78,8 +78,8 @@
 <form method="post" action="/food?actionUser=login">
     <div class="login">
         <h2>Login</h2>
-        <input value="${sessionScope.us}" type="text" class="username" name="username" placeholder="username" />
-        <input value="${sessionScope.pw}" type="password" class="password" name="password" placeholder="password" />
+        <input value="${sessionScope.us}" type="text" class="username" name="username" placeholder="username"/>
+        <input value="${sessionScope.pw}" type="password" class="password" name="password" placeholder="password"/>
         <input type="submit" class="submit" value="Đăng nhập">
         <hr>
         <a href="/food?actionUser=register" style="background-color: Blue;">Đăng ký</a>

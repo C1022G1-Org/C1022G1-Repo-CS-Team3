@@ -151,6 +151,17 @@ public class AdminFoodServlet extends HttpServlet {
     private void performCreate(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         String category = request.getParameter("category");
+        switch (category) {
+            case "đồ ăn":
+                category = "1";
+                break;
+            case "đồ ăn nhanh":
+                category = "2";
+                break;
+            case "nước uống":
+                category = "3";
+                break;
+        }
         String imgURL = request.getParameter("imgURL");
         String description = request.getParameter("description");
         int price = Integer.parseInt(request.getParameter("price"));

@@ -19,10 +19,20 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<form action="/food?actionUser=login" method="post">
-    <div class="card w-25">
-        <input type="hidden" name="username" value="${loginName}">
-        <input type="hidden" name="password" value="${loginPass}">
+<%--<style>--%>
+<%--    *{--%>
+<%--        padding: 0px;--%>
+<%--        margin: 0px auto;--%>
+<%--    }--%>
+<%--    body{--%>
+<%--        //background-image: ;--%>
+<%--    }--%>
+
+<%--</style>--%>
+<form action="/food?actionUser=order" method="post">
+    <div class="card w-25 col-md-12">
+<%--        <input type="hidden" name="username" value="${loginName}">--%>
+<%--        <input type="hidden" name="password" value="${loginPass}">--%>
         <img class="card-img-top" src="${food.imgURL}" alt="">
         <div class="card-body">
             <input type="hidden" name="foodName" value="${food.name}">
@@ -39,8 +49,9 @@
                 Tổng tiền: <span id="result"></span>
             </p>
         </div>
+        <input type="submit" value="Mua" class="btn btn-secondary">
     </div>
-    <input type="submit" value="Mua" class="btn btn-secondary">
+
 </form>
 
 
