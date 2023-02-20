@@ -37,4 +37,53 @@ public class OrderRepository implements IOrderRepository {
         }
         return orderList;
     }
+
+    @Override
+    public int findIdByFoodName(String foodName) {
+        try {
+            PreparedStatement preparedStatement = BaseRepository.getConnection()
+                    .prepareStatement("select food_id from food where food_name = ?");
+            preparedStatement.setString(1, foodName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return 0;
+    }
+
+    @Override
+    public int findIdByUserName(String userName) {
+        try {
+            PreparedStatement preparedStatement = BaseRepository.getConnection()
+                    .prepareStatement("select user_id from users where user_name = ?");
+            preparedStatement.setString(1, userName);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return resultSet.getInt(1);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return 0;
+    }
+
+    @Override
+    public void addOrder(Order order) {
+        try {
+            PreparedStatement preparedStatement = BaseRepository.getConnection()
+                    .prepareStatement("insert into `order` (user_id, food_id, quantity) values (?,?,?)");
+            int foodId = findIdByFoodName(order.getFood());
+            int userId = findIdByUserName(order.getUser());
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setInt(2, foodId);
+            preparedStatement.setInt(3, order.getQuantity());
+            preparedStatement.executeUpdate();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

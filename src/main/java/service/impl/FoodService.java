@@ -1,6 +1,7 @@
 package service.impl;
 
 import Model.Food;
+import Model.User;
 import repository.IFoodRepository;
 import repository.impl.FoodRepository;
 import service.IFoodService;
@@ -50,6 +51,11 @@ public class FoodService implements IFoodService {
     @Override
     public Food findById(int id) {
         return foodRepository.findById(id);
+    }
+
+    @Override
+    public User findUserById(int userId) {
+        return foodRepository.findUserById(userId);
     }
 
     @Override

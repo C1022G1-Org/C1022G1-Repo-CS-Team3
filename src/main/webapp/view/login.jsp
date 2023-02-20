@@ -11,7 +11,6 @@
 <head>
     <title>Bài Tập</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./stylesheet.css" />
     <link rel="stylesheet" href="../themify-icons/themify-icons.css" />
     <link rel="stylesheet" href="../css/bootstrap.css" />
     <style>
@@ -19,6 +18,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        body {
+            background: url('../img/bg.jpg') top center / cover no-repeat;
+        }
+
+        form {
+            margin-top: 24px;
         }
 
         .login  {
@@ -31,7 +38,7 @@
         }
 
         .login h2 {
-            margin-top: 70px;
+            margin-top: 40px;
             color: #868787;
             font-family: sans-serif;
         }
@@ -49,7 +56,7 @@
         .login .submit,
         .login a {
             display: inline-block;
-            width: 200px;
+            width: 400px;
             height: 40px;
             margin-bottom: 10px;
             border-radius: 5px;
@@ -71,10 +78,11 @@
 <form method="post" action="/food?actionUser=login">
     <div class="login">
         <h2>Login</h2>
-        <input type="text" class="username" name="username" id="" placeholder="username" />
-        <input type="password" class="password" name="password" id="" placeholder="password" />
+        <input value="${sessionScope.us}" type="text" class="username" name="username" placeholder="username" />
+        <input value="${sessionScope.pw}" type="password" class="password" name="password" placeholder="password" />
         <input type="submit" class="submit" value="Đăng nhập">
-        <a href="/food?actionUser=register" >Đăng ký</a>
+        <hr>
+        <a href="/food?actionUser=register" style="background-color: Blue;">Đăng ký</a>
     </div>
 </form>
 

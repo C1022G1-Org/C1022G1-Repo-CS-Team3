@@ -62,7 +62,6 @@
 
         .logout,
         .logout-responsive {
-            background: orange;
             border-radius: 8px;
             transition: all 0.2s ease;
             padding: 8px;
@@ -103,7 +102,12 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: lightblue !important;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/food">TDQ</a>
+        <form action="/food?actionUser=login" method="post">
+            <input type="hidden" name="username" value="${usName}">
+            <input type="hidden" name="password" value="${pW}">
+            <input type="submit" class="navbar-brand border-0 bg-transparent" value="TDQ">
+        </form>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -122,9 +126,30 @@
                         Menu
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/food?actionUser=beveragelist">Nước uống</a></li>
-                        <li><a class="dropdown-item" href="/food?actionUser=foodlist">Đồ ăn</a></li>
-                        <li><a class="dropdown-item" href="/food?actionUser=fastfoodlist">Đồ ăn nhanh</a></li>
+                        <li>
+                            <form class="dropdown-item" action="/food?actionUser=login" method="post">
+                                <input type="hidden" name="username" value="${usName}">
+                                <input type="hidden" name="password" value="${pW}">
+                                <input type="hidden" name="listBeverage" id="listBeverage">
+                                <input type="submit" value="Nước uống" class="border-0 bg-transparent" onclick="addBeverageValue()">
+                            </form>
+                        </li>
+                        <li>
+                            <form class="dropdown-item" action="/food?actionUser=login" method="post">
+                                <input type="hidden" name="username" value="${usName}">
+                                <input type="hidden" name="password" value="${pW}">
+                                <input type="hidden" name="listFood" id="listFood" >
+                                <input type="submit" value="Đồ ăn" class="border-0 bg-transparent" onclick="addFoodValue()">
+                            </form>
+                        </li>
+                        <li>
+                            <form class="dropdown-item" action="/food?actionUser=login" method="post">
+                                <input type="hidden" name="username" value="${usName}">
+                                <input type="hidden" name="password" value="${pW}">
+                                <input type="hidden" name="listFastFood" id="listFastFood">
+                                <input type="submit" value="Đồ ăn nhanh" class="border-0 bg-transparent" onclick="addFastFoodValue()">
+                            </form>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -138,7 +163,9 @@
                 </li>
             </ul>
             <div class="action nav-item">
-                <form class="d-flex" role="search">
+                <form method="post" class="d-flex" role="search" action="/food?actionUser=login">
+                    <input type="hidden" name="username" value="${usName}">
+                    <input type="hidden" name="password" value="${pW}">
                     <input
                             class="form-control me-2"
                             type="search"
@@ -146,17 +173,38 @@
                             aria-label="Search"
                             name="search"
                             value="${search}"
+                            onclick="removeValue()"
                     />
                     <button class="btn btn-outline-success" type="submit">
                         Search
                     </button>
                 </form>
-                <div class="hide__on__mobile logout"><a href="/food?actionUser=login" class="text-decoration-none text-black-50">
-                    Logout</a> <i class="ti-shift-right"></i></div>
+                <div class="navbar-nav">
+                    <c:if test="${usName == null}">
+                        <div class="hide__on__mobile logout"><a href="/food?actionUser=login"
+                                                                class="text-decoration-none text-black-50">
+                            Login</a> <i class="ti-shift-left"></i></div>
+                    </c:if>
+                    <c:if test="${usName != null}">
+                        <span class="hide__on__mobile logout bg-warning"> <i class="ti-user"></i> ${usName}</span>
+                        <div class="hide__on__mobile logout">
+                            <a href="/food" class="text-decoration-none text-warning">
+                            Logout</a> <i class="ti-shift-right"></i></div>
+                    </c:if>
+                </div>
             </div>
             <div class="navbar-nav mt-4">
-                <div class="logout-responsive"><a href="/food?actionUser=login" class="text-decoration-none text-black-50">
-                    Logout</a> <i class="ti-shift-right"></i></div>
+                <c:if test="${usName == null} ">
+                    <div class="logout-responsive"><a href="/food?actionUser=login"
+                                                      class="text-decoration-none text-black-50">
+                        Login</a> <i class="ti-shift-left"></i></div>
+                </c:if>
+                <c:if test="${usName != null}">
+                    <span class="logout-responsive bg-warning"><i class="ti-user"></i> ${usName}</span>
+                    <div class="logout-responsive"><a href="/food"
+                                                      class="text-decoration-none text-warning">
+                        Logout</a> <i class="ti-shift-right"></i></div>
+                </c:if>
             </div>
         </div>
     </div>
@@ -179,7 +227,97 @@
                         <p>
                             Giá: ${food.price} đ
                         </p>
-                        <a href="/food?actionUser=buy&id=${food.id}" class="btn btn-primary">Chọn</a>
+<%--                        <a href="/food?actionUser=buy&id=${food.id}&userId=${sessionScope.userId}"--%>
+<%--                           class="btn btn-primary">Chọn</a>--%>
+                        <form action="/food" method="get">
+                            <input type="hidden" name="actionUser" value="buy">
+                            <input type="hidden" name="username" value="${usName}">
+                            <input type="hidden" name="password" value="${pW}">
+                            <input type="hidden" name="id" value="${food.id}">
+                            <input type="hidden" name="userId" value="${sessionScope.userId}">
+                            <input type="submit" value="Chọn" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+
+        <c:forEach var="food1" items="${foodList1}" varStatus="stt">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card" style="width: 100%">
+                    <img height="320px" src="${food1.imgURL}" class="card-img-top" alt="..."/>
+                    <div class="card-body">
+                        <h5 class="card-title">${food1.name}</h5>
+                        <p class="card-text">
+                                ${food1.description}
+                        </p>
+                        <p>
+                            Giá: ${food1.price} đ
+                        </p>
+<%--                        <a href="/food?actionUser=buy&id=${food1.id}&userId=${sessionScope.userId}"--%>
+<%--                           class="btn btn-primary">Chọn</a>--%>
+                        <form action="/food" method="get">
+                            <input type="hidden" name="actionUser" value="buy">
+                            <input type="hidden" name="username" value="${usName}">
+                            <input type="hidden" name="password" value="${pW}">
+                            <input type="hidden" name="id" value="${food.id}">
+                            <input type="hidden" name="userId" value="${sessionScope.userId}">
+                            <input type="submit" value="Chọn" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+
+        <c:forEach var="food2" items="${foodList2}" varStatus="stt">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card" style="width: 100%">
+                    <img height="320px" src="${food2.imgURL}" class="card-img-top" alt="..."/>
+                    <div class="card-body">
+                        <h5 class="card-title">${food2.name}</h5>
+                        <p class="card-text">
+                                ${food2.description}
+                        </p>
+                        <p>
+                            Giá: ${food2.price} đ
+                        </p>
+<%--                        <a href="/food?actionUser=buy&id=${food2.id}&userId=${sessionScope.userId}"--%>
+<%--                           class="btn btn-primary">Chọn</a>--%>
+                        <form action="/food" method="get">
+                            <input type="hidden" name="actionUser" value="buy">
+                            <input type="hidden" name="username" value="${usName}">
+                            <input type="hidden" name="password" value="${pW}">
+                            <input type="hidden" name="id" value="${food.id}">
+                            <input type="hidden" name="userId" value="${sessionScope.userId}">
+                            <input type="submit" value="Chọn" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+
+        <c:forEach var="food3" items="${foodList3}" varStatus="stt">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card" style="width: 100%">
+                    <img height="320px" src="${food3.imgURL}" class="card-img-top" alt="..."/>
+                    <div class="card-body">
+                        <h5 class="card-title">${food3.name}</h5>
+                        <p class="card-text">
+                                ${food3.description}
+                        </p>
+                        <p>
+                            Giá: ${food3.price} đ
+                        </p>
+<%--                        <a href="/food?actionUser=buy&id=${food3.id}&userId=${sessionScope.userId}"--%>
+<%--                           class="btn btn-primary">Chọn</a>--%>
+                        <form action="/food" method="get">
+                            <input type="hidden" name="actionUser" value="buy">
+                            <input type="hidden" name="username" value="${usName}">
+                            <input type="hidden" name="password" value="${pW}">
+                            <input type="hidden" name="id" value="${food.id}">
+                            <input type="hidden" name="userId" value="${sessionScope.userId}">
+                            <input type="submit" value="Chọn" class="btn btn-primary">
+                        </form>
                     </div>
                 </div>
             </div>
@@ -288,6 +426,31 @@
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script>
+    function addFoodValue() {
+        document.getElementById("listFood").value = "listFood"
+        document.getElementById("listFastFood").value = ""
+        document.getElementById("listBeverage").value = ""
+    }
+
+    function addFastFoodValue() {
+        document.getElementById("listFood").value = ""
+        document.getElementById("listFastFood").value = "listFastFood"
+        document.getElementById("listBeverage").value = ""
+    }
+
+    function addBeverageValue() {
+        document.getElementById("listFood").value = ""
+        document.getElementById("listFastFood").value = ""
+        document.getElementById("listBeverage").value = "listBeverage"
+    }
+
+    function removeValue() {
+        document.getElementById("listFood").value = ""
+        document.getElementById("listFastFood").value = ""
+        document.getElementById("listBeverage").value = ""
+    }
+</script>
 <script src="../../js_tu/bootstrap.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

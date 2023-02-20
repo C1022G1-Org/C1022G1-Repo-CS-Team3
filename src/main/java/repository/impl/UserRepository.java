@@ -73,13 +73,15 @@ public class UserRepository implements IUserRepository {
         PreparedStatement preparedStatement = null;
         try {
             preparedStatement = BaseRepository.getConnection()
-                    .prepareStatement("select user_login_name, user_login_password from users where user_login_name =? and user_login_password =?");
+                    .prepareStatement("select user_id ,user_name, user_login_name, user_login_password from users " +
+                            "where user_login_name = ? and user_login_password = ?");
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, passWord);
             ResultSet resultSet = preparedStatement.executeQuery();
             User user;
             while (resultSet.next()) {
-                user = new User(resultSet.getString(1), resultSet.getString(2));
+                user = new User(resultSet.getInt(1) ,resultSet.getString(2) ,resultSet.getString(3),
+                        resultSet.getString(4));
                 return user;
             }
         } catch (SQLException throwables) {

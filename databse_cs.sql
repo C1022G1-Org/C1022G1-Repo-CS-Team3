@@ -5,7 +5,7 @@ create table users (
   user_id int primary key auto_increment , 
   user_name varchar (45),
   user_login_name varchar (45),
-  user_login_password varchar (45),
+  user_login_password varchar (45) unique,
   user_role varchar(45),
   date_of_birth date,
   gender bit(1),

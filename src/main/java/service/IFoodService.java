@@ -1,6 +1,7 @@
 package service;
 
 import Model.Food;
+import Model.User;
 
 import java.util.List;
 
@@ -13,5 +14,6 @@ public interface IFoodService {
     void deleteFood(int id);
     List<Food> listAllFood();
     Food findById (int id);
+    User findUserById (int userId);
     void updateFood(Food food);
 }
