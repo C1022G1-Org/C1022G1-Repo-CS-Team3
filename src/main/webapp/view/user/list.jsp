@@ -185,7 +185,7 @@
                     <c:if test="${sessionScope.us != null}">
                         <span class="hide__on__mobile logout bg-warning"> <i class="ti-user"></i> ${sessionScope.us}</span>
                         <div class="hide__on__mobile logout">
-                            <a href="/food" class="text-decoration-none text-warning">
+                            <a href="/login" class="text-decoration-none text-warning">
                             Logout</a> <i class="ti-shift-right"></i></div>
                     </c:if>
                 </div>

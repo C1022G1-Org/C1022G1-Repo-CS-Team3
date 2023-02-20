@@ -88,7 +88,6 @@
         <a href="/food?actionUser=register" style="background-color: Blue;">Đăng ký</a>
     </div>
 </form>
-
 <script src="../js/bootstrap.js.map"></script>
 </body>
 </html>

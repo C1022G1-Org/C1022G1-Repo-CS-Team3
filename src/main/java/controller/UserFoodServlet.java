@@ -4,6 +4,7 @@ import Model.Food;
 import Model.Order;
 import Model.User;
 import repository.impl.BaseRepository;
+import repository.impl.UserRepository;
 import service.IFoodService;
 import service.IOrderService;
 import service.IUserService;
@@ -160,7 +161,7 @@ public class UserFoodServlet extends HttpServlet {
 //        Thực hiện order
         String foodName = request.getParameter("foodName");
         String username = request.getParameter("userName");
-        if (foodName != null &username != null) {
+        if (foodName != null & username != null) {
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             Order order = new Order(foodName, username, quantity);
             orderService.addOrder(order);
