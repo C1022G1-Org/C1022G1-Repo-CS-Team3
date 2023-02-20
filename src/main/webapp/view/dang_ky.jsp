@@ -78,23 +78,24 @@
 <h2 class="text-center mt-md-5" style="color:red">ĐĂNG KÝ TÀI KHOẢN</h2>
 <form id="form1" name="form1" method="post" action="/food?actionUser=register">
     <div>
-        <label for="loginName" class="title">Tên đăng nhập:</label>
-        <input required id="loginName" onBlur="return KiemTraTenDN();" type="text" name="loginName" size="30" /><span id="tendn">
-                *</span>
+        <label for="loginName" class="title">Tên đăng nhập:<span id="tendn">
+                *</span></label>
+        <input required id="loginName" onBlur="return KiemTraTenDN();" type="text" name="loginName" size="30"/>
     </div>
     <div>
-        <label for="loginPassword" class="title">Mật khẩu:</label>
-        <input required id="loginPassword" onBlur="return KiemTraPassWord();" type="password" name="loginPassword" size="30" /><span id="mk">
-                *</span>
+        <label for="loginPassword" class="title">Mật khẩu:<span id="mk">
+                *</span></label>
+        <input required id="loginPassword" onBlur="return KiemTraPassWord();" type="password" name="loginPassword"
+               size="30"/>
     </div>
     <div>
-        <label for="name" class="title">Họ và tên:</label>
-        <input required type="text" id="name" name="name" size="30" /><span id="hoten"> * bắt buộc</span>
+        <label for="name" class="title">Họ và tên:<span id="hoten"> * </span></label>
+        <input required type="text" id="name" name="name" size="30"/>
     </div>
     <div>
-        <label for="dateOfBirth" class="title">Ngày sinh:</label>
-        <input required id="dateOfBirth" onBlur="return KiemTraNgaySinh();" type="date" name="dateOfBirth" size="30" /><span
-            id="ngaysinh"></span>
+        <label for="dateOfBirth" class="title">Ngày sinh:<span
+                id="ngaysinh">*</span></label>
+        <input required id="dateOfBirth" onBlur="return KiemTraNgaySinh();" type="date" name="dateOfBirth" size="30"/>
     </div>
     <div>
         <input onBlur="return KiemTraNgaySinh();" type="hidden" name="role" size="30" value="user"/><span
@@ -102,28 +103,24 @@
     </div>
     <div class="radio-buttons">
         <span class="title">Giới tính:</span>
-        <input type="radio" name="gender" id="male" value="M" checked />
+        <input type="radio" name="gender" id="male" value="M" checked/>
         <label for="male">Nam</label>
-        <input type="radio" name="gender" id="female" value="F" checked />
-        <label for="female">Nữ</label><br />
+        <input type="radio" name="gender" id="female" value="F" checked/>
+        <label for="female">Nữ</label><br/>
     </div>
     <div>
-        <label for="address" class="title">Địa chỉ:</label>
-        <input required type="text" name="address" id="address" size="30" />
-        <span id="diachi"></span>
+        <label for="address" class="title">Địa chỉ:<span id="diachi">*</span></label>
+        <input required type="text" name="address" id="address" size="30"/>
     </div>
     <div>
-        <label for="email" class="title">Email:</label>
-        <input required type="email" name="email" id="email" size="30" />
-        <span id="gmail">* </span>
+        <label for="email" class="title">Email:<span id="gmail">* </span></label>
+        <input required type="email" name="email" id="email" size="30"/>
     </div>
     <div class="submit">
         <button type="submit" id="submit">Đăng ký</button>
         <button><a href="/view/login.jsp">Hủy</a></button>
     </div>
 </form>
-
-
 <script src="../js/bootstrap.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/file.js"></script>
