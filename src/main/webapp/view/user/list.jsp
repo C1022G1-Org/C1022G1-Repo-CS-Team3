@@ -124,7 +124,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Trang Chủ</a>
+                    <a class="nav-link active" aria-current="page" href="/food">Trang Chủ</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -161,6 +161,15 @@
                         </li>
                     </ul>
                 </li>
+                <div>
+                    <a class="nav-link active" aria-current="page" href="/food">Giới Thiệu</a>
+                </div>
+                <div>
+                    <a class="nav-link active" aria-current="page" href="/food">Tin Tức</a>
+                </div>
+                <div>
+                    <a class="nav-link active" aria-current="page" href="/food">Liên Hệ</a>
+                </div>
             </ul>
             <div class="action nav-item">
                 <form method="get" class="d-flex" role="search" action="/food">
@@ -321,8 +330,23 @@
                 </div>
             </div>
         </c:forEach>
+
     </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
+
 <!-- footer -->
 <section class="footer bg-dark text-light">
     <div class="container">
