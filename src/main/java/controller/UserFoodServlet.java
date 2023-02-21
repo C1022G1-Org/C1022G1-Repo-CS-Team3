@@ -171,50 +171,6 @@ public class UserFoodServlet extends HttpServlet {
     }
 
     private void performLogin(HttpServletRequest request, HttpServletResponse response) {
-//        Thực hiện order
-        String foodName = request.getParameter("foodName");
-        String username = request.getParameter("userName");
-        if (foodName != null & username != null) {
-            int quantity = Integer.parseInt(request.getParameter("quantity"));
-            Order order = new Order(foodName, username, quantity);
-            orderService.addOrder(order);
-        }
-
-//        List Menu
-        String listFood = request.getParameter("listFood");
-        String listFastFood = request.getParameter("listFastFood");
-        String listBeverage = request.getParameter("listBeverage");
-        String search = request.getParameter("search");
-        List<Food> foodList = null;
-        List<Food> foodList1 = null;
-        List<Food> foodList2 = null;
-        List<Food> foodList3 = null;
-        List<Food> foodList4 = new ArrayList<>();
-//        List all
-        if (listFood == null && listFastFood == null && listBeverage == null) {
-            foodList = foodService.listByName(search);
-        }
-
-//        List đồ ăn
-        if (listFood == null) {
-            foodList1 = foodList4;
-        } else if (listFood.equals("listFood")) {
-            foodList1 = foodService.listFood();
-        }
-
-//        List đồ ăn nhanh
-        if (listFastFood == null) {
-            foodList2 = foodList4;
-        } else if (listFastFood.equals("listFastFood")) {
-            foodList2 = foodService.listFastFood();
-        }
-
-//        String search = request.getParameter("search");
-//        List<Food> foodList = foodService.listByName(search);
-//        request.setAttribute("search", search);
-//        request.setAttribute("foodList", foodList);
-
-//        Đăng nhập
         String userName = request.getParameter("username");
         String passWord = request.getParameter("password");
         User user = userService.checkLogin(userName, passWord);
@@ -240,24 +196,24 @@ public class UserFoodServlet extends HttpServlet {
                 session.setAttribute("pw", user.getloginPassword());
                 session.setAttribute("userId", user.getId());
 
-                Cookie userCookie = new Cookie("userCookie", user.getLoginName());
-                Cookie passWordCookie = new Cookie("passWordCookie", user.getloginPassword());
-                response.addCookie(userCookie);
-                response.addCookie(passWordCookie);
-
-                Cookie[] cookieArr = request.getCookies();
-                if (cookieArr != null) {
-                    for (Cookie cookie : cookieArr) {
-                        if (cookie.getName().equals("userCookie")) {
-                            request.setAttribute("usName", cookie.getValue());
-                        }
-                        if (cookie.getName().equals("passWordCookie")) {
-                            request.setAttribute("pW", cookie.getValue());
-                        }
-                    }
-                }
-                userCookie.setMaxAge(60*60);
-                passWordCookie.setMaxAge(60*60);
+//                Cookie userCookie = new Cookie("userCookie", user.getLoginName());
+//                Cookie passWordCookie = new Cookie("passWordCookie", user.getloginPassword());
+//                response.addCookie(userCookie);
+//                response.addCookie(passWordCookie);
+//
+//                Cookie[] cookieArr = request.getCookies();
+//                if (cookieArr != null) {
+//                    for (Cookie cookie : cookieArr) {
+//                        if (cookie.getName().equals("userCookie")) {
+//                            request.setAttribute("usName", cookie.getValue());
+//                        }
+//                        if (cookie.getName().equals("passWordCookie")) {
+//                            request.setAttribute("pW", cookie.getValue());
+//                        }
+//                    }
+//                }
+//                userCookie.setMaxAge(60*60);
+//                passWordCookie.setMaxAge(60*60);
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } catch (ServletException | IOException e) {
                 e.printStackTrace();
