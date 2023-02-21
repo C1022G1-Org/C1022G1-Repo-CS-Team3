@@ -121,6 +121,8 @@ public class UserFoodServlet extends HttpServlet {
     private void performRegister(HttpServletRequest request, HttpServletResponse response) {
         String loginName = request.getParameter("loginName");
         String loginPassword = request.getParameter("loginPassword");
+        request.setAttribute("loginName", loginName);
+        request.setAttribute("loginPassword", loginPassword);
         String name = request.getParameter("name");
         String role = request.getParameter("role");
         String dateOfBirth = request.getParameter("dateOfBirth");
@@ -138,8 +140,8 @@ public class UserFoodServlet extends HttpServlet {
         User user = new User(name, loginName, loginPassword, role, dateOfBirth, gender, email, address);
         userService.addUser(user);
         try {
-            response.sendRedirect("/view/register_login.jsp");
-        } catch (IOException e) {
+            request.getRequestDispatcher("/view/register_login.jsp").forward(request, response);
+        } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
     }
