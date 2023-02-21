@@ -136,12 +136,17 @@ public class UserFoodServlet extends HttpServlet {
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         User user = new User(name, loginName, loginPassword, role, dateOfBirth, gender, email, address);
-        userService.addUser(user);
-        try {
-            response.sendRedirect("/view/login.jsp");
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (loginName.equals(user.getLoginName())){
+
+        }else {
+            userService.addUser(user);
+            try {
+                response.sendRedirect("/view/login.jsp");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     private void showBuyForm(HttpServletRequest request, HttpServletResponse response) {
