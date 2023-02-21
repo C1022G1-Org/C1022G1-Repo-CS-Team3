@@ -138,7 +138,7 @@ public class UserFoodServlet extends HttpServlet {
         User user = new User(name, loginName, loginPassword, role, dateOfBirth, gender, email, address);
         userService.addUser(user);
         try {
-            response.sendRedirect("/view/login.jsp");
+            response.sendRedirect("/view/register_login.jsp");
         } catch (IOException e) {
             e.printStackTrace();
         }
