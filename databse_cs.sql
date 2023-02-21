@@ -13,6 +13,8 @@ create table users (
   address varchar (45)
 );
 
+alter table users modify column user_login_name varchar (45) unique;
+
 create table food_category (
   food_category_id int primary key auto_increment,
   food_category_name varchar (45)

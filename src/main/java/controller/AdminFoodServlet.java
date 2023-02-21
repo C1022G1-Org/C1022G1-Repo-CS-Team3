@@ -165,7 +165,6 @@ public class AdminFoodServlet extends HttpServlet {
         String imgURL = request.getParameter("imgURL");
         String description = request.getParameter("description");
         int price = Integer.parseInt(request.getParameter("price"));
-//        String category_name = request.getParameter("category_name");
         Food food = new Food(name, description, price, imgURL, category);
         foodService.addNewFood(food);
         try {
